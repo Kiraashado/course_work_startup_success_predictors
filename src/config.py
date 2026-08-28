@@ -17,9 +17,6 @@ class Config:
         "yc_2023_feb": "2023-02-27-yc-companies.csv",
         "yc_2023_jul": "2023-07-13-yc-companies.csv",
         "yc_2025": "yc_companies.csv",
-        # Возможно стоит добавить сюда не-YC датасет, типа
-        # "crunchbase": "crunchbase_companies.csv",
-        # но не факт
     })
 
     SNAPSHOT_DATES: Dict[str, str] = field(default_factory=lambda: {
@@ -32,7 +29,6 @@ class Config:
         "status", "team_size", "tags", "batch"
     ])
     
-    # колонки, которые должны быть в финальном датасете
     UNIFIED_SCHEMA: List[str] = field(default_factory=lambda: [
         "id",                    # Уникальный идентификатор (company_id)
         "name",                  # Название компании
@@ -61,8 +57,6 @@ class Config:
         "nonprofit",             # Является ли компания некоммерческой
     ])
     
-    # Маппинг колонок из разных источников в унифицированную схему
-    # Формат: {source_name: {original_col: unified_col}}
     COLUMN_MAPPINGS: Dict[str, Dict[str, str]] = field(default_factory=lambda: {
         "yc_2023_feb": {
             "company_id": "id",
@@ -74,6 +68,8 @@ class Config:
             "team_size": "team_size",
             "tags": "tags",
             "url": "website",
+            "location": "location_raw",
+            "cb_url": "crunchbase_url",
         },
         "yc_2023_jul": {
             "company_id": "id",
@@ -85,6 +81,8 @@ class Config:
             "team_size": "team_size",
             "tags": "tags",
             "url": "website",
+            "location": "location_raw",
+            "cb_url": "crunchbase_url",
         },
         "yc_2025": {
             "id": "id",
@@ -102,7 +100,7 @@ class Config:
             "founders_names": "founders_names",
             "country": "country",
             "city": "city",
-            "location": "location_raw",
+            "all_locations": "location_raw",
             "website": "website",
             "cb_url": "crunchbase_url",
             "linkedin_url": "linkedin_url",
@@ -118,7 +116,6 @@ class Config:
         "inactive": "inactive",
         "acquired": "acquired",
         "public": "public",
-        # т.к. в датасетах есть разные регистры
         "Active": "active",
         "Inactive": "inactive",
         "Acquired": "acquired",
