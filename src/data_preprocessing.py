@@ -19,18 +19,18 @@
 - dataset_a.parquet        — основной cross-sectional датасет
 - dataset_b.parquet        — longitudinal датасет (динамика 2023→2025)
 - quality_report.json      — отчёт о качестве
+- preprocessing_report.json — исходное состояние и изменения данных
 
 Использование:
     python src/data_preprocessing.py
 """
 import re
 import ast
+from datetime import datetime
+from typing import Any, Dict, Optional, Tuple
 
 import pandas as pd
 import numpy as np
-from pathlib import Path
-from typing import Dict, Optional, Tuple
-import logging
 
 from config import config
 from utils.logger import setup_logger
@@ -448,6 +448,114 @@ def finalize_and_report(
     
     report_path = config.PREPROCESSED_DIR / "quality_report.json"
     save_quality_report(report, report_path)
+
+
+def _dataset_state(df: pd.DataFrame, id_col: str = "id") -> Dict[str, Any]:
+    """Возвращает краткое описание структуры и полноты датасета."""
+    data_columns = [col for col in df.columns if col not in {"source", "snapshot_date"}]
+    data = df[data_columns]
+    total_cells = data.shape[0] * data.shape[1]
+    missing = data.isna().sum()
+    missing = missing[missing > 0].sort_values(ascending=False)
+
+    state = {
+        "rows": int(data.shape[0]),
+        "columns": int(data.shape[1]),
+        "total_missing": int(missing.sum()),
+        "missing_percentage": round(
+            float(missing.sum() / total_cells * 100) if total_cells else 0.0,
+            2,
+        ),
+        "columns_with_missing": int(len(missing)),
+        "missing_by_column": {col: int(value) for col, value in missing.items()},
+        "full_row_duplicates": int(data.astype(str).duplicated().sum()),
+    }
+    if id_col in df.columns:
+        state["unique_ids"] = int(df[id_col].nunique(dropna=True))
+        state["duplicate_ids"] = int(df[id_col].dropna().duplicated().sum())
+    return state
+
+
+def save_preprocessing_report(
+    loaded: Dict[str, pd.DataFrame],
+    unified_2023: pd.DataFrame,
+    unified_2025: pd.DataFrame,
+    dataset_a: pd.DataFrame,
+    dataset_b: pd.DataFrame,
+) -> None:
+    """Сохраняет сводку об исходных данных и изменениях в pipeline."""
+    raw_states = {}
+    for name, df in loaded.items():
+        id_col = "id" if "id" in df.columns else "company_id"
+        raw_states[name] = _dataset_state(df, id_col=id_col)
+
+    ids_2023_feb = set(loaded.get("yc_2023_feb", pd.DataFrame()).get("company_id", []))
+    ids_2023_jul = set(loaded.get("yc_2023_jul", pd.DataFrame()).get("company_id", []))
+    change_columns = [col for col in unified_2023.columns if col.endswith("_changed_feb_jul")]
+
+    key_columns = [
+        "location_raw", "city", "country", "batch_year",
+        "crunchbase_url", "year_founded", "num_founders",
+    ]
+    field_changes = {}
+    for col in key_columns:
+        before = int(unified_2025[col].notna().sum()) if col in unified_2025.columns else 0
+        after = int(dataset_a[col].notna().sum()) if col in dataset_a.columns else 0
+        field_changes[col] = {
+            "non_null_before": before,
+            "non_null_after": after,
+            "added": after - before,
+        }
+
+    target_counts = {}
+    if "status_label" in dataset_a.columns:
+        target_counts = {
+            str(label): int(count)
+            for label, count in dataset_a["status_label"].value_counts().items()
+        }
+
+    panel_changes = None
+    if not dataset_b.empty:
+        delta = dataset_b["team_size_delta"].dropna()
+        panel_changes = {
+            "companies": int(len(dataset_b)),
+            "status_changed": int(dataset_b["status_changed"].sum()),
+            "team_size_changed": int(dataset_b["team_size_changed"].sum()),
+            "team_size_delta": {
+                "observations": int(len(delta)),
+                "mean": round(float(delta.mean()), 2) if len(delta) else None,
+                "median": round(float(delta.median()), 2) if len(delta) else None,
+            },
+        }
+
+    report = {
+        "generated_at": datetime.now().isoformat(),
+        "raw_datasets": raw_states,
+        "consolidation_2023": {
+            "february_ids": int(len(ids_2023_feb)),
+            "july_ids": int(len(ids_2023_jul)),
+            "common_ids": int(len(ids_2023_feb & ids_2023_jul)),
+            "only_february": int(len(ids_2023_feb - ids_2023_jul)),
+            "only_july": int(len(ids_2023_jul - ids_2023_feb)),
+            "result": _dataset_state(unified_2023),
+            "changed_by_column": {
+                col.removesuffix("_changed_feb_jul"): int(unified_2023[col].sum())
+                for col in change_columns
+            },
+        },
+        "prepared_2025": _dataset_state(unified_2025),
+        "dataset_a": {
+            "state": _dataset_state(dataset_a),
+            "companies_present_in_2023": int(dataset_a["has_data_in_2023"].sum()),
+            "field_completion": field_changes,
+            "target_counts": target_counts,
+        },
+        "dataset_b": panel_changes,
+    }
+
+    report_path = config.PREPROCESSED_DIR / "preprocessing_report.json"
+    save_quality_report(report, report_path)
+    logger.info("Отчет о предобработке: %s", report_path)
     
 def _save_parquet(df: pd.DataFrame, filename: str):
     """Сохраняет DataFrame в Parquet с защитой от дублирующихся колонок."""
@@ -494,7 +602,10 @@ def main():
         dataset_a = create_target_variables(dataset_a, "status")
         if not dataset_b.empty:
             dataset_b = create_target_variables(dataset_b, "status_2025")
-        
+
+        save_preprocessing_report(
+            loaded, unified_2023, unified_2025, dataset_a, dataset_b
+        )
         finalize_and_report(dataset_a, dataset_b)
         logger.info("Предобработка завершена: dataset_a=%s, dataset_b=%s", dataset_a.shape, dataset_b.shape)
         
