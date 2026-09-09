@@ -23,7 +23,6 @@ from datetime import datetime
 from typing import Any, Optional
 
 import matplotlib.pyplot as plt
-import matplotlib.ticker as mticker
 import numpy as np
 import pandas as pd
 import seaborn as sns
@@ -56,6 +55,71 @@ STATUS_COLORS = {
 SF_COLORS = {
     "success": COLORS["primary"],
     "failure": COLORS["dark"],
+}
+FEATURE_LABELS = {
+    "team_size": "Размер команды",
+    "num_founders": "Число основателей",
+    "company_age": "Возраст компании",
+    "success_binary": "Исход не определён",
+    "crunchbase_url": "Ссылка на Crunchbase",
+    "linkedin_url": "Ссылка на LinkedIn",
+    "year_founded": "Год основания",
+    "founders_names": "Имена основателей",
+    "long_description": "Подробное описание",
+    "country": "Страна",
+    "city": "Город",
+    "location_raw": "Местоположение",
+    "short_description": "Краткое описание",
+    "website": "Сайт",
+    "batch_year": "Год набора",
+    "top_company": "Отметка ведущей компании",
+}
+STATUS_LABELS = {
+    "active": "Работает",
+    "inactive": "Закрыта",
+    "acquired": "Поглощена",
+    "public": "Вышла на биржу",
+    "unknown": "Неизвестно",
+}
+INDUSTRY_LABELS = {
+    "Artificial Intelligence": "Искусственный интеллект",
+    "B2B": "Решения для бизнеса",
+    "Consumer": "Потребительские товары и услуги",
+    "Fintech": "Финансовые технологии",
+    "Healthcare": "Здравоохранение",
+    "Industrials": "Промышленность",
+    "Real Estate and Construction": "Недвижимость и строительство",
+    "Education": "Образование",
+    "Government": "Государственный сектор",
+    "Unspecified": "Не указано",
+}
+COUNTRY_LABELS = {
+    "USA": "США", "United Kingdom": "Великобритания", "India": "Индия",
+    "Canada": "Канада", "Mexico": "Мексика", "France": "Франция",
+    "Germany": "Германия", "Singapore": "Сингапур", "Nigeria": "Нигерия",
+    "Brazil": "Бразилия", "Israel": "Израиль", "Indonesia": "Индонезия",
+}
+TAG_LABELS = {
+    "B2B": "Решения для бизнеса",
+    "SaaS": "Программное обеспечение как услуга",
+    "Artificial Intelligence": "Искусственный интеллект",
+    "AI": "Искусственный интеллект (AI)",
+    "Fintech": "Финансовые технологии",
+    "Developer Tools": "Инструменты для разработчиков",
+    "Marketplace": "Торговые площадки",
+    "Generative AI": "Генеративный ИИ",
+    "Machine Learning": "Машинное обучение",
+    "Healthcare": "Здравоохранение",
+    "Consumer": "Потребительский рынок",
+    "E-commerce": "Электронная торговля",
+    "Analytics": "Аналитика",
+    "Health Tech": "Технологии в здравоохранении",
+    "Open Source": "Открытое программное обеспечение",
+    "Education": "Образование",
+    "Productivity": "Повышение производительности",
+    "AI Assistant": "Помощники на основе ИИ",
+    "Hardware": "Оборудование",
+    "Payments": "Платежи",
 }
 CORRELATION_CMAP = LinearSegmentedColormap.from_list(
     "blue_diverging",
@@ -145,6 +209,17 @@ def style_axis(
     sns.despine(ax=ax)
 
 
+def add_note(fig: Figure, text: str) -> None:
+    """Добавляет к графику пояснение, необходимое для автономного чтения."""
+    fig.text(0.01, 0.005, text, ha="left", va="bottom", fontsize=8, color="#606060")
+
+
+def format_percentage(value: float) -> str:
+    """Форматирует долю без потери малых ненулевых значений."""
+    precision = 2 if 0 < abs(value) < 0.1 else 1
+    return f"{value:.{precision}f}%"
+
+
 def add_bar_labels(
     ax: Axes,
     bars: BarContainer,
@@ -191,12 +266,12 @@ def extract_batch_season(batch: Any) -> str:
     value = str(batch).strip().upper()
     if value.startswith(("W", "WINTER")):
         return "Winter"
+    if value.startswith("SPRING"):
+        return "Spring"
     if value.startswith(("S", "SUMMER")):
         return "Summer"
     if value.startswith(("F", "FALL")):
         return "Fall"
-    if value.startswith("SPRING"):
-        return "Spring"
     return "Unknown"
 
 
@@ -227,69 +302,37 @@ def analytical_industry(row: pd.Series) -> str:
 
 def analyze_missing_values(df: pd.DataFrame) -> dict[str, Any]:
     """Анализирует пропуски в датасете."""
-    
-    total_cells = df.shape[0] * df.shape[1]
-    total_missing = int(df.isnull().sum().sum())
+    analyzed_df = df.drop(columns=["success_binary"], errors="ignore")
+    total_cells = analyzed_df.shape[0] * analyzed_df.shape[1]
+    total_missing = int(analyzed_df.isnull().sum().sum())
     missing_pct_total = total_missing / total_cells * 100 if total_cells else 0.0
     
     
-    missing_per_col = df.isnull().sum()
-    missing_pct = (missing_per_col / len(df) * 100).sort_values(ascending=False)
+    missing_per_col = analyzed_df.isnull().sum()
+    missing_pct = (missing_per_col / len(analyzed_df) * 100).sort_values(ascending=False)
     missing_pct = missing_pct[missing_pct > 0]
     
     if len(missing_pct) > 0:
         fig, ax = plt.subplots(figsize=(12, max(6, len(missing_pct) * 0.3)))
-        colors = [
-            COLORS["dark"] if value > 50
-            else COLORS["medium"] if value > 20
-            else COLORS["primary"]
-            for value in missing_pct.values[::-1]
-        ]
         bars = ax.barh(
-            missing_pct.index[::-1], missing_pct.values[::-1], color=colors
+            [FEATURE_LABELS.get(col, col) for col in missing_pct.index[::-1]],
+            missing_pct.values[::-1], color=COLORS["primary"],
         )
         style_axis(
             ax,
-            title=(
-                "Пропущенные значения в Dataset A (2025)\n"
-                f"Всего пропущено: {missing_pct_total:.1f}% ячеек"
-            ),
-            xlabel="Доля пропусков, %",
+            title="Доля незаполненных значений в данных о компаниях-выпускниках YC",
+            xlabel="Доля незаполненных значений, %",
         )
-        ax.axvline(50, color=COLORS["dark"], linestyle="--", label="50% (критично)")
-        ax.axvline(20, color=COLORS["medium"], linestyle="--", label="20% (внимание)")
         add_bar_labels(
-            ax, bars, [f"{value:.1f}%" for value in missing_pct.values[::-1]],
+            ax, bars, [format_percentage(value) for value in missing_pct.values[::-1]],
             horizontal=True,
         )
-        ax.legend(loc="lower right")
         ax.set_xlim(0, min(100, missing_pct.max() * 1.15))
+        # add_note(
+        #     fig,
+        #     f"{len(df):,} компаний. Целевой признак исключён: для работающих компаний он не определён.",
+        # )
         save_figure(fig, "01_missing_values")
-
-        top_missing_cols = missing_pct.head(10).index.tolist()
-        df_missing_pattern = df[top_missing_cols].isnull().astype(int)
-        
-        sample_size = min(500, len(df))
-        df_sample = df_missing_pattern.sample(n=sample_size, random_state=42)
-        
-        fig, ax = plt.subplots(figsize=(12, 8))
-        sns.heatmap(
-            df_sample.T, 
-            cmap=[COLORS["light"], COLORS["dark"]],
-            cbar_kws={"label": "Пропуск (1) / Наличие (0)"},
-            ax=ax,
-            yticklabels=True,
-            xticklabels=False
-        )
-        style_axis(
-            ax,
-            title=(f"Паттерны пропусков (выборка {sample_size} строк)\n"
-                   "Топ-10 колонок с наибольшим числом пропусков"),
-            xlabel="Индекс строки",
-            ylabel="Колонка",
-            grid_axis="",
-        )
-        save_figure(fig, "02_missing_patterns")
     
     return {
         "total_cells": total_cells,
@@ -309,49 +352,25 @@ def analyze_target_variable(df: pd.DataFrame) -> dict[str, Any]:
     status_counts = df["status"].value_counts()
     status_pct = df["status"].value_counts(normalize=True) * 100
     
-    fig, axes = plt.subplots(1, 2, figsize=(14, 5))
+    fig, ax = plt.subplots(figsize=(10, 6))
     
     colors = [STATUS_COLORS.get(s, COLORS["muted"]) for s in status_counts.index]
-    bars = axes[0].bar(
-        status_counts.index, status_counts.values,
+    status_names = [STATUS_LABELS.get(status, status) for status in status_counts.index]
+    bars = ax.bar(
+        status_names, status_counts.values,
         color=colors
     )
     add_bar_labels(
-        axes[0], bars,
-        [f"{value}\n({status_pct[status]:.1f}%)"
+        ax, bars,
+        [f"{value}\n({format_percentage(status_pct[status])})"
          for status, value in status_counts.items()],
     )
     style_axis(
-        axes[0], title="Количество стартапов по статусу",
-        xlabel="Статус", ylabel="Количество компаний",
+        ax,
+        title="Распределение компаний-выпускников YC по текущему состоянию",
+        xlabel="Текущее состояние компании", ylabel="Число компаний",
     )
-    
-    wedges, texts, autotexts = axes[1].pie(
-        status_counts.values,
-        labels=status_counts.index,
-        autopct="%1.1f%%",
-        colors=colors,
-        startangle=90,
-        pctdistance=0.85,
-        wedgeprops={"width": 0.5, "edgecolor": "white", "linewidth": 2},
-    )
-    
-    for autotext in autotexts:
-        autotext.set_color("white")
-        autotext.set_fontweight("bold")
-        autotext.set_fontsize(10)
-    
-    axes[1].set_title("Доля стартапов по статусу", pad=12)
-    
-    centre_circle = plt.Circle((0, 0), 0.70, fc="white", ec="#D5D5D5")
-    axes[1].add_artist(centre_circle)
-    axes[1].text(0, 0, f"{len(df)}\nвсего", ha="center", va="center", 
-                fontsize=14, fontweight="bold")
-    
-    plt.suptitle(
-        "Распределение целевой переменной status (Dataset A, 2025)",
-        fontsize=14, fontweight="bold", y=1.02
-    )
+    # add_note(fig, f"{len(df):,} компаний; состояние на момент сбора данных.")
     save_figure(fig, "03_status_distribution")
     
     df_copy = df.copy()
@@ -374,14 +393,17 @@ def analyze_target_variable(df: pd.DataFrame) -> dict[str, Any]:
     )
     add_bar_labels(
         ax, bars,
-        [f"{value}\n({value / len(df_sf) * 100:.1f}%)" for value in sf_counts.values],
+        [f"{value}\n({format_percentage(value / len(df_sf) * 100)})"
+         for value in sf_counts.values],
     )
     style_axis(
         ax,
-        title="Распределение для бинарного анализа\n(Success vs Failure, без active)",
-        xlabel="Бинарный статус",
-        ylabel="Количество компаний",
+        title="Состав выборки компаний с известным исходом",
+        xlabel="Исход", ylabel="Число компаний",
     )
+    ax.set_xticks(range(len(sf_counts)), ["Успех" if s == "success" else "Неудача" for s in sf_counts.index])
+    # add_note(fig, f"{len(df_sf):,} компаний. Успехом считается поглощение компании или её выход на биржу, неудачей - закрытие; работающие компании исключены.")
+    add_note(fig, f"Успехом считается поглощение компании или её выход на биржу, неудачей - закрытие; работающие компании исключены.")
     save_figure(fig, "04_status_binary")
     
     return {
@@ -395,10 +417,7 @@ def analyze_target_variable(df: pd.DataFrame) -> dict[str, Any]:
     }
 
 def analyze_numerical_features(df: pd.DataFrame) -> dict[str, Any]:
-    """
-    Анализирует числовые признаки.
-    Для team_size используется логарифмическая шкала из-за сильного правого скоса.
-    """
+    """Анализирует числовые признаки."""
     
     num_cols = [c for c in ["team_size", "num_founders", "company_age"] 
                 if c in df.columns]
@@ -419,13 +438,17 @@ def analyze_numerical_features(df: pd.DataFrame) -> dict[str, Any]:
         data = df[col].dropna()
         skew = data.skew()
         skewness[col] = round(float(skew), 2) if not pd.isna(skew) else 0.0
-    n_cols = len(valid_num_cols)
+    distribution_cols = [
+        col for col in ["team_size", "num_founders"] if col in valid_num_cols
+    ]
+    n_cols = len(distribution_cols)
     fig, axes = plt.subplots(1, n_cols, figsize=(6 * n_cols, 5))
     if n_cols == 1:
         axes = [axes]
     
-    for ax, col in zip(axes, valid_num_cols):
+    for ax, col in zip(axes, distribution_cols):
         data = df[col].dropna()
+        label = FEATURE_LABELS[col]
         
         use_log = abs(data.skew()) > 1.5 and (data >= 0).all()
         
@@ -438,9 +461,9 @@ def analyze_numerical_features(df: pd.DataFrame) -> dict[str, Any]:
             ax.axvline(np.log10(median_val + 1), color=COLORS["dark"], linestyle="--",
                       linewidth=2, label=f"Медиана: {median_val:.0f}")
             
-            ax.set_title(f"{col}\n(log₁₀(x + 1), skew={data.skew():.1f})", 
-                        fontsize=11, fontweight="bold")
-            ax.set_xlabel(f"log₁₀({col} + 1)")
+            # ax.set_title(f"{label}\nЛогарифмическая шкала", fontsize=11, fontweight="bold")
+            ax.set_title(f"{label}", fontsize=11, fontweight="bold")
+            ax.set_xlabel(f"{label}, человек")
             
             tick_vals = [0, 1, 10, 100, 1000, 10000]
             tick_labels = ["0", "1", "10", "100", "1K", "10K"]
@@ -453,116 +476,136 @@ def analyze_numerical_features(df: pd.DataFrame) -> dict[str, Any]:
             cap = data.quantile(0.99)
             data_capped = data[data <= cap]
             
-            ax.hist(data_capped, bins=40, color=COLORS["primary"])
+            lower = int(np.floor(data_capped.min()))
+            upper = int(np.ceil(data_capped.max()))
+            bins = np.arange(lower - 0.5, upper + 1.5)
+            ax.hist(data_capped, bins=bins, color=COLORS["primary"])
+            ax.set_xticks(range(lower, upper + 1))
             
             median_val = data.median()
             ax.axvline(median_val, color=COLORS["dark"], linestyle="--",
                       linewidth=2, label=f"Медиана: {median_val:.0f}")
             
-            ax.set_title(f"{col}\n(skew={data.skew():.1f})",
-                        fontsize=11, fontweight="bold")
-            ax.set_xlabel(col)
+            ax.set_title(label, fontsize=11, fontweight="bold")
+            ax.set_xlabel(f"{label}, человек")
         
-        ax.set_ylabel("Количество компаний")
+        ax.set_ylabel("Число компаний")
         ax.legend(fontsize=9, loc="upper right")
     
     plt.suptitle(
-        "Распределения числовых признаков (Dataset A)",
+        "Распределение размера команды и числа основателей в компаниях-выпускниках YC",
         fontsize=14, fontweight="bold", y=1.02
+    )
+    add_note(
+        fig,
+        "Пунктиром отмечена медиана; график распределения размеров команд представлен в логарифмической шкале.",
     )
     plt.tight_layout()
     save_figure(fig, "05_numerical_distributions")
-    fig, axes = plt.subplots(1, n_cols, figsize=(5 * n_cols, 5))
-    if n_cols == 1:
+
+    n_box_cols = len(valid_num_cols)
+    fig, axes = plt.subplots(1, n_box_cols, figsize=(5 * n_box_cols, 5))
+    if n_box_cols == 1:
         axes = [axes]
-    
+
     for ax, col in zip(axes, valid_num_cols):
         data = df[col].dropna()
-        use_log = abs(data.skew()) > 1.5 and (data >= 0).all()
-        
+        label = FEATURE_LABELS[col]
+        use_log = col == "team_size" and (data >= 0).all()
+        plot_data = np.log10(data + 1) if use_log else data
+
+        ax.boxplot(
+            plot_data,
+            orientation="vertical",
+            patch_artist=True,
+            boxprops={"facecolor": COLORS["primary"], "alpha": 0.85},
+            medianprops={"color": COLORS["dark"], "linewidth": 2},
+            whiskerprops={"color": COLORS["medium"]},
+            capprops={"color": COLORS["medium"]},
+            flierprops={
+                "marker": "o",
+                "markerfacecolor": COLORS["soft"],
+                "markeredgecolor": COLORS["medium"],
+                "markersize": 3,
+                "alpha": 0.55,
+            },
+        )
+
+        q1, median, q3 = data.quantile([0.25, 0.5, 0.75])
+        unit = " лет" if col == "company_age" else ""
+        ax.text(
+            0.05,
+            0.95,
+            f"25-й процентиль: {q1:.0f}{unit}\n"
+            f"Медиана: {median:.0f}{unit}\n"
+            f"75-й процентиль: {q3:.0f}{unit}",
+            transform=ax.transAxes,
+            fontsize=9,
+            va="top",
+            bbox={
+                "boxstyle": "round",
+                "facecolor": COLORS["light"],
+                "edgecolor": COLORS["muted"],
+                "alpha": 0.9,
+            },
+        )
+
+        ax.set_title(label, fontsize=11, fontweight="bold")
+        ax.set_xticks([])
+        ax.set_ylabel("Лет" if col == "company_age" else "Человек")
+        ax.grid(axis="y", alpha=0.25)
+        sns.despine(ax=ax)
+
         if use_log:
-            data_plot = np.log10(data + 1)
-            ax.boxplot(data_plot, orientation="vertical", patch_artist=True,
-                           boxprops={"facecolor": COLORS["primary"], "alpha": 0.8},
-                           medianprops={"color": COLORS["dark"], "linewidth": 2})
-            
-            ax.set_title(f"{col} (log₁₀ шкала)", fontsize=11, fontweight="bold")
-            ax.set_ylabel(f"log₁₀({col})")
-            
-            q1, median, q3 = data_plot.quantile([0.25, 0.5, 0.75])
-            iqr = q3 - q1
-            ax.text(0.05, 0.95, 
-                   f"Q1: {10**q1 - 1:.0f}\n"
-                   f"Median: {10**median - 1:.0f}\n"
-                   f"Q3: {10**q3 - 1:.0f}\n"
-                   f"IQR: {iqr:.2f} (log)",
-                   transform=ax.transAxes, fontsize=8,
-                   verticalalignment="top",
-                   bbox={"boxstyle": "round", "facecolor": COLORS["light"], "alpha": 0.8})
-            
-        else:
-            ax.boxplot(data, orientation="vertical", patch_artist=True,
-                           boxprops={"facecolor": COLORS["primary"], "alpha": 0.8},
-                           medianprops={"color": COLORS["dark"], "linewidth": 2})
-            
-            ax.set_title(col, fontsize=11, fontweight="bold")
-            ax.set_ylabel(col)
-            
-            q1, median, q3 = data.quantile([0.25, 0.5, 0.75])
-            iqr = q3 - q1
-            ax.text(0.05, 0.95,
-                   f"Q1: {q1:.0f}\n"
-                   f"Median: {median:.0f}\n"
-                   f"Q3: {q3:.0f}\n"
-                   f"IQR: {iqr:.0f}",
-                   transform=ax.transAxes, fontsize=8,
-                   verticalalignment="top",
-                   bbox={"boxstyle": "round", "facecolor": COLORS["light"], "alpha": 0.8})
-    
+            tick_values = [0, 1, 10, 100, 1000, 10000]
+            visible_ticks = [value for value in tick_values if value <= data.max()]
+            ax.set_yticks([np.log10(value + 1) for value in visible_ticks])
+            ax.set_yticklabels([str(value) for value in visible_ticks])
+
     plt.suptitle(
-        "Boxplot'ы числовых признаков (выбросы)",
-        fontsize=14, fontweight="bold", y=1.02
+        "Квартильные характеристики компаний-выпускников YC",
+        fontsize=14,
+        fontweight="bold",
+        y=1.02,
+    )
+    add_note(
+        fig,
+        "Границы прямоугольника - 25-й и 75-й процентили, линия - медиана; размер команды показан в логарифмической шкале.",
     )
     plt.tight_layout()
     save_figure(fig, "06_numerical_boxplots")
+
     corr_matrix = None
     if len(valid_num_cols) >= 2:
         df_corr = df[valid_num_cols].dropna()
         if len(df_corr) > 0:
-            corr_matrix = df_corr.corr()
+            corr_matrix = df_corr.corr(method="spearman")
             
             fig, ax = plt.subplots(figsize=(8, 6))
-            mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
-            
+            corr_labels = [FEATURE_LABELS[col] for col in corr_matrix.columns]
+            corr_display = corr_matrix.copy()
+            corr_display.index = corr_labels
+            corr_display.columns = corr_labels
             sns.heatmap(
-                corr_matrix, mask=mask, annot=True, fmt=".3f",
+                corr_display, annot=True, fmt=".2f",
                 cmap=CORRELATION_CMAP, center=0, vmin=-1, vmax=1,
                 square=True, linewidths=1, ax=ax,
-                cbar_kws={"label": "Коэффициент корреляции Пирсона"}
+                cbar=False,
             )
-            ax.set_title("Корреляционная матрица числовых признаков",
-                        fontsize=12, fontweight="bold")
+            ax.set_title(
+                "Связь между числовыми характеристиками компаний",
+                fontsize=12, fontweight="bold",
+            )
+            ax.set_xlabel("")
+            ax.set_ylabel("")
+            ax.tick_params(axis="x", rotation=20)
+            ax.tick_params(axis="y", rotation=0)
+            add_note(
+                fig,
+                f"В клетках указана ранговая корреляция Спирмена соответствующих характеристик; вычислено на основе {len(df_corr):,} полных наблюдений.",
+            )
             plt.tight_layout()
             save_figure(fig, "07_correlation_matrix")
-            
-    if 2 <= len(valid_num_cols) <= 3:
-        df_pair = df[valid_num_cols].dropna()
-        if len(df_pair) > 0:
-            if "team_size" in df_pair.columns:
-                df_pair["log_team_size"] = np.log10(df_pair["team_size"] + 1)
-                df_pair = df_pair.drop(columns=["team_size"])
-            
-            pairplot = sns.pairplot(
-                df_pair, diag_kind="kde",
-                plot_kws={"alpha": 0.5, "s": 20},
-                diag_kws={"alpha": 0.7}
-            )
-            pairplot.fig.suptitle(
-                "Попарные распределения числовых признаков",
-                fontsize=14, fontweight="bold", y=1.02
-            )
-            plt.tight_layout()
-            save_figure(pairplot.fig, "08_pairplot")
     
     return {
         "descriptive_stats": desc.to_dict(),
@@ -578,13 +621,12 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
         
         batch_counts = df.groupby("batch_year").size().reset_index(name="count")
         batch_counts = batch_counts.dropna(subset=["batch_year"])
+        batch_counts = batch_counts[batch_counts["batch_year"] <= datetime.now().year]
         
         if len(batch_counts) == 0:
             return results
         else:
             batch_counts["batch_year"] = batch_counts["batch_year"].astype(int)
-            
-            
             fig, ax = plt.subplots(figsize=(14, 6))
             bars = ax.bar(
                 batch_counts["batch_year"], batch_counts["count"],
@@ -599,16 +641,20 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
                     fontsize=8, fontweight="bold"
                 )
             
-            ax.set_title(
-                "Количество стартапов YC по году батча",
-                fontsize=13, fontweight="bold"
+            ax.set_title("Количество компаний-выпускников YC по году набора")
+            ax.set_xlabel("Год набора", fontsize=11)
+            ax.set_ylabel("Число компаний", fontsize=11)
+            ax.set_xticks(batch_counts["batch_year"])
+            ax.set_xlim(
+                batch_counts["batch_year"].min() - 0.7,
+                batch_counts["batch_year"].max() + 0.7,
             )
-            ax.set_xlabel("Год батча", fontsize=11)
-            ax.set_ylabel("Количество стартапов", fontsize=11)
-            ax.xaxis.set_major_locator(mticker.MultipleLocator(1))
             plt.xticks(rotation=45, ha="right")
             ax.grid(axis="y", alpha=0.3)
-            
+            # add_note(
+            #     fig,
+            #     f"{int(batch_counts['count'].sum()):,} компаний с известным годом; последние наборы могут быть неполными.",
+            # )
             plt.tight_layout()
             save_figure(fig, "09_batch_by_year")
             
@@ -622,6 +668,11 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
             df_season["season"] = df_season["batch"].apply(extract_batch_season)
             
             season_counts = df_season["season"].value_counts()
+            season_counts = season_counts.drop(labels="Unknown", errors="ignore")
+            season_counts.index = season_counts.index.map({
+                "Summer": "Лето", "Winter": "Зима", "Fall": "Осень",
+                "Spring": "Весна",
+            })
             
             if len(season_counts) > 0:
                 fig, ax = plt.subplots(figsize=(8, 5))
@@ -634,16 +685,18 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
                     pct = val / season_counts.sum() * 100
                     ax.text(
                         bar.get_x() + bar.get_width() / 2, bar.get_height() + 20,
-                        f"{val}\n({pct:.1f}%)",
+                        f"{val}\n({format_percentage(pct)})",
                         ha="center", va="bottom", fontweight="bold"
                     )
                 
-                ax.set_title(
-                    "Распределение батчей по сезонам",
-                    fontsize=12, fontweight="bold"
-                )
-                ax.set_ylabel("Количество стартапов")
+                ax.set_title("Распределение компаний-выпускников YC по сезону набора")
+                ax.set_ylabel("Число компаний")
+                ax.set_xlabel("Сезон набора")
                 ax.set_ylim(0, season_counts.max() * 1.2)
+                add_note(
+                    fig,
+                    "Каждая компания учтена один раз; записи без указанного сезона исключены.",
+                )
                 
                 plt.tight_layout()
                 save_figure(fig, "10_batch_seasonality")
@@ -659,7 +712,8 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
         
         fig, ax = plt.subplots(figsize=(11, 6))
         bars = ax.barh(
-            top_industries.index[::-1], top_industries.values[::-1],
+            [INDUSTRY_LABELS.get(industry, industry) for industry in top_industries.index[::-1]],
+            top_industries.values[::-1],
             color=COLORS["primary"]
         )
         
@@ -667,21 +721,63 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
             pct = val / total_with_industry * 100
             ax.text(
                 val + 5, bar.get_y() + bar.get_height() / 2,
-                f"{val} ({pct:.1f}%)", va="center", fontsize=9
+                f"{val} ({format_percentage(pct)})", va="center", fontsize=9
             )
         
-        ax.set_title(
-            f"Топ-10 аналитических отраслей YC\n"
-            f"(AI выделен по тегам; всего: {total_with_industry})",
-            fontsize=12, fontweight="bold"
-        )
-        ax.set_xlabel("Количество стартапов", fontsize=11)
+        ax.set_title("Распределение компаний YC по направлениям деятельности")
+        ax.set_xlabel("Число компаний", fontsize=11)
         ax.set_xlim(0, top_industries.max() * 1.15)
+        add_note(
+            fig,
+            f"{total_with_industry:,} компаний; ИИ выделен по тегам, остальные направления - по классификации YC.",
+        )
         
         plt.tight_layout()
         save_figure(fig, "11_top_industries")
         
         results["top_industries"] = {ind: int(cnt) for ind, cnt in top_industries.items()}
+
+        yc_industries = df["industry"].dropna().astype(str).str.strip()
+        yc_industries = yc_industries[yc_industries.ne("")]
+        top_yc_industries = yc_industries.value_counts().head(10)
+        total_yc_industries = len(yc_industries)
+
+        if not top_yc_industries.empty:
+            fig, ax = plt.subplots(figsize=(11, 6))
+            bars = ax.barh(
+                [
+                    INDUSTRY_LABELS.get(industry, industry)
+                    for industry in top_yc_industries.index[::-1]
+                ],
+                top_yc_industries.values[::-1],
+                color=COLORS["primary"],
+            )
+
+            for bar, val in zip(bars, top_yc_industries.values[::-1]):
+                pct = val / total_yc_industries * 100
+                ax.text(
+                    val + 5,
+                    bar.get_y() + bar.get_height() / 2,
+                    f"{val} ({format_percentage(pct)})",
+                    va="center",
+                    fontsize=9,
+                )
+
+            ax.set_title("Распределение компаний YC по исходной классификации")
+            ax.set_xlabel("Число компаний", fontsize=11)
+            ax.set_xlim(0, top_yc_industries.max() * 1.15)
+            add_note(
+                fig,
+                f"{total_yc_industries:,} компаний; использовано исходное направление YC, теги не учитываются.",
+            )
+
+            plt.tight_layout()
+            save_figure(fig, "11_yc_industries")
+
+            results["top_yc_industries"] = {
+                industry: int(count)
+                for industry, count in top_yc_industries.items()
+            }
     country_col = None
     if "country" in df.columns and df["country"].notna().sum() > 0:
         country_col = "country"
@@ -708,23 +804,25 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
         else:
             fig, ax = plt.subplots(figsize=(11, 6))
             bars = ax.barh(
-                top_countries.index[::-1], top_countries.values[::-1],
+                [COUNTRY_LABELS.get(country, country) for country in top_countries.index[::-1]],
+                top_countries.values[::-1],
                 color=COLORS["primary"]
             )
             add_bar_labels(
                 ax,
                 bars,
-                [f"{val} ({val / total_with_country * 100:.1f}%)"
+                [f"{val} ({format_percentage(val / total_with_country * 100)})"
                  for val in top_countries.values[::-1]],
                 horizontal=True,
             )
             
-            ax.set_title(
-                f"Топ-10 стран по количеству стартапов YC\n(всего с указанной страной: {total_with_country})",
-                fontsize=12, fontweight="bold"
-            )
-            ax.set_xlabel("Количество стартапов (log-шкала)", fontsize=11)
+            ax.set_title("Десять стран с наибольшим числом компаний YC")
+            ax.set_xlabel("Число компаний (логарифмическая шкала)", fontsize=11)
             ax.set_xscale("log")
+            add_note(
+                fig,
+                f"{total_with_country:,} компаний с известной страной; горизонтальная ось логарифмическая.",
+            )
             
             plt.tight_layout()
             save_figure(fig, "12_top_countries")
@@ -736,7 +834,11 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
         
         all_tags = []
         for tags in df["tags"]:
-            all_tags.extend(parse_tags(tags))
+            normalized_tags = {
+                "Artificial Intelligence" if tag == "AI" else tag
+                for tag in parse_tags(tags)
+            }
+            all_tags.extend(normalized_tags)
         
         if all_tags:
             tag_counts = pd.Series(Counter(all_tags)).sort_values(ascending=False)
@@ -745,7 +847,8 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
             
             fig, ax = plt.subplots(figsize=(11, 8))
             bars = ax.barh(
-                top_tags.index[::-1], top_tags.values[::-1],
+                [TAG_LABELS.get(tag, tag) for tag in top_tags.index[::-1]],
+                top_tags.values[::-1],
                 color=COLORS["primary"]
             )
             
@@ -755,12 +858,13 @@ def analyze_categorical_features(df: pd.DataFrame) -> dict[str, Any]:
                     str(val), va="center", fontsize=9
                 )
             
-            ax.set_title(
-                f"Топ-20 тегов стартапов YC\n(всего уникальных тегов: {len(tag_counts)})",
-                fontsize=12, fontweight="bold"
-            )
-            ax.set_xlabel("Количество стартапов с тегом", fontsize=11)
+            ax.set_title("Двадцать наиболее распространённых тематических тегов компаний YC")
+            ax.set_xlabel("Число компаний с тегом", fontsize=11)
             ax.set_xlim(0, top_tags.max() * 1.1)
+            add_note(
+                fig,
+                f"Показаны 20 из {len(tag_counts):,} тегов; AI и Artificial Intelligence объединены; теги могут пересекаться.",
+            )
             
             plt.tight_layout()
             save_figure(fig, "13_top_tags")
@@ -779,7 +883,7 @@ def analyze_temporal_features(df: pd.DataFrame) -> dict[str, Any]:
         df_founded = df[df["year_founded"].notna()].copy()
         df_founded["year_founded"] = pd.to_numeric(
             df_founded["year_founded"], errors="coerce"
-        ).astype("Int64")  # nullable integer
+        ).astype("Int64")
         
         df_founded = df_founded[df_founded["year_founded"].notna()]
         
@@ -792,34 +896,12 @@ def analyze_temporal_features(df: pd.DataFrame) -> dict[str, Any]:
                 (year_counts.index >= 2005) & (year_counts.index <= 2025)
             ]
             
-            if len(year_counts) == 0:
-                pass
-            else:
-                
-                fig, ax = plt.subplots(figsize=(14, 6))
-                ax.bar(
-                    year_counts.index.astype(int), year_counts.values,
-                    color=COLORS["primary"]
-                )
-                
-                ax.set_title(
-                    f"Распределение стартапов по году основания\n"
-                    f"(медиана: {df_founded['year_founded'].median():.0f})",
-                    fontsize=12, fontweight="bold"
-                )
-                ax.set_xlabel("Год основания", fontsize=11)
-                ax.set_ylabel("Количество стартапов", fontsize=11)
-                ax.xaxis.set_major_locator(mticker.MultipleLocator(1))
-                plt.xticks(rotation=45, ha="right")
-                ax.grid(axis="y", alpha=0.3)
-                
-                plt.tight_layout()
-                save_figure(fig, "14_year_founded")
-                
+            if len(year_counts) > 0:
+                median_year = float(df_founded["year_founded"].median())
                 results["year_founded"] = {
                     "min": int(year_counts.index.min()),
                     "max": int(year_counts.index.max()),
-                    "median": float(df_founded["year_founded"].median()),
+                    "median": median_year,
                     "distribution": {int(y): int(c) for y, c in year_counts.items()},
                 }
     else:
@@ -834,9 +916,11 @@ def analyze_temporal_features(df: pd.DataFrame) -> dict[str, Any]:
         cap = age_data.quantile(0.99)
         age_capped = age_data[age_data <= cap]
         
-        ax.hist(
-            age_capped, bins=30, color=COLORS["primary"]
-        )
+        lower = int(np.floor(age_capped.min()))
+        upper = int(np.ceil(age_capped.max()))
+        bins = np.arange(lower - 0.5, upper + 1.5)
+        ax.hist(age_capped, bins=bins, color=COLORS["primary"])
+        ax.set_xticks(range(lower, upper + 1, 2))
         
         median_age = age_data.median()
         ax.axvline(
@@ -844,15 +928,15 @@ def analyze_temporal_features(df: pd.DataFrame) -> dict[str, Any]:
             linewidth=2, label=f"Медиана: {median_age:.0f} лет"
         )
         
-        ax.set_title(
-            f"Распределение возраста компаний\n"
-            f"(средний: {age_data.mean():.1f}, медиана: {median_age:.0f})",
-            fontsize=12, fontweight="bold"
-        )
+        ax.set_title("Распределение компаний YC по возрасту")
         ax.set_xlabel("Возраст компании (лет)", fontsize=11)
-        ax.set_ylabel("Количество компаний", fontsize=11)
+        ax.set_ylabel("Число компаний", fontsize=11)
         ax.legend(fontsize=10)
         ax.grid(axis="y", alpha=0.3)
+        add_note(
+            fig,
+            f"Возраст на 2025 год; {len(age_data):,} компаний; верхний 1% значений не показан.",
+        )
         
         plt.tight_layout()
         save_figure(fig, "15_company_age")
