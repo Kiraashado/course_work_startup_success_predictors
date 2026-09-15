@@ -10,19 +10,22 @@ class Config:
     ARTIFACTS_DIR: Path = PROJECT_ROOT / "artifacts"
     PREPROCESSED_DIR: Path = ARTIFACTS_DIR / "preprocessed"
     REPORTS_DIR: Path = PROJECT_ROOT / "reports"
-    EDA_DIR: Path = ARTIFACTS_DIR / "eda"
+    EDA_DIR: Path = ARTIFACTS_DIR / "eda" / "cohort_2023_2026"
+    BASELINE_DATE: str = "2023-07-13"
+    FOLLOWUP_DATE: str = "2026-08-01"
+    COHORT_FIGURES_DIR: Path = PROJECT_ROOT / "coursework_text" / "graphics" / "eda"
     FIGURES_DIR: Path = REPORTS_DIR / "figures"
     
     SOURCE_FILES: Dict[str, str] = field(default_factory=lambda: {
         "yc_2023_feb": "2023-02-27-yc-companies.csv",
         "yc_2023_jul": "2023-07-13-yc-companies.csv",
-        "yc_2025": "yc_companies.csv",
+        "yc_2026": "yc_companies.csv",
     })
 
     SNAPSHOT_DATES: Dict[str, str] = field(default_factory=lambda: {
         "yc_2023_feb": "2023-02-27",
         "yc_2023_jul": "2023-07-13",
-        "yc_2025": "2025-01-01",
+        "yc_2026": "2026-08-01",
     })
 
     COMPARE_COLS_2023: List[str] = field(default_factory=lambda: [
@@ -84,7 +87,7 @@ class Config:
             "location": "location_raw",
             "cb_url": "crunchbase_url",
         },
-        "yc_2025": {
+        "yc_2026": {
             "id": "id",
             "name": "name",
             "one_liner": "short_description",

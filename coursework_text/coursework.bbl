@@ -1,0 +1,890 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global/global}
+    \entry{old-study}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=824c1cd36f04c91918127201716953b9}{%
+           family={Bruno},
+           familyi={B\bibinitperiod},
+           given={Albert\bibnamedelima V.},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=2121e071647b8e66e7020b96dca36619}{%
+           family={McQuarrie},
+           familyi={M\bibinitperiod},
+           given={Edward\bibnamedelima F.},
+           giveni={E\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=116533fef39227e360fac80951e5a5ba}{%
+           family={Torgrimson},
+           familyi={T\bibinitperiod},
+           given={Carol\bibnamedelima G.},
+           giveni={C\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \strng{namehash}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{fullhash}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{fullhashraw}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{bibnamehash}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{authorbibnamehash}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{authornamehash}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{authorfullhash}{4ce64d7d0aa92eb464f4661b2758805a}
+      \strng{authorfullhashraw}{4ce64d7d0aa92eb464f4661b2758805a}
+      \field{sortinit}{B}
+      \field{sortinithash}{d7095fff47cda75ca2589920aae98399}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Journal of Business Venturing}
+      \field{number}{4}
+      \field{title}{The evolution of new technology ventures over 20 years: Patterns of failure, merger, and survival}
+      \field{volume}{7}
+      \field{year}{1992}
+      \field{pages}{291\bibrangedash 302}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.1016/0883-9026(92)90003-A
+      \endverb
+    \endentry
+    \entry{catboost-shap}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=5ee8e926cee80c3726617995bf39e8f5}{%
+           family={{CatBoost developers}},
+           familyi={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{fullhash}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{fullhashraw}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{bibnamehash}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{authorbibnamehash}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{authornamehash}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{authorfullhash}{5ee8e926cee80c3726617995bf39e8f5}
+      \strng{authorfullhashraw}{5ee8e926cee80c3726617995bf39e8f5}
+      \field{sortinit}{C}
+      \field{sortinithash}{4d103a86280481745c9c897c925753c0}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{{ShapValues}}
+      \field{urlday}{13}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://catboost.ai/docs/en/concepts/shap-values
+      \endverb
+      \verb{url}
+      \verb https://catboost.ai/docs/en/concepts/shap-values
+      \endverb
+    \endentry
+    \entry{getinvestor}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=d73d2b1e1a7d07a3a9efab62cd150f33}{%
+           family={{GetInvestor}},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{fullhash}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{fullhashraw}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{bibnamehash}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{authorbibnamehash}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{authornamehash}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{authorfullhash}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \strng{authorfullhashraw}{d73d2b1e1a7d07a3a9efab62cd150f33}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Crunchbase --- что это такое и как пользоваться}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://get-investor.ru/crunchbase-chem-polezen-startapu
+      \endverb
+      \verb{url}
+      \verb https://get-investor.ru/crunchbase-chem-polezen-startapu
+      \endverb
+    \endentry
+    \entry{gompers2016}{report}{}{}
+      \name{author}{4}{}{%
+        {{hash=0d249aca19fceef705d1cce36b583fcf}{%
+           family={Gompers},
+           familyi={G\bibinitperiod},
+           given={Paul\bibnamedelima A.},
+           giveni={P\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=7adedc3bb17752a8319b71a6927217d1}{%
+           family={Gornall},
+           familyi={G\bibinitperiod},
+           given={Will},
+           giveni={W\bibinitperiod}}}%
+        {{hash=11122b0ade7615ce1f359141cffa2e3d}{%
+           family={Kaplan},
+           familyi={K\bibinitperiod},
+           given={Steven\bibnamedelima N.},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=3afb56396db412fba98fda2113164dce}{%
+           family={Strebulaev},
+           familyi={S\bibinitperiod},
+           given={Ilya\bibnamedelima A.},
+           giveni={I\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {National Bureau of Economic Research}%
+      }
+      \strng{namehash}{e06a061b1bd9b91d96f9ea320b653766}
+      \strng{fullhash}{58b92cfcb315c07981fc2d188f044402}
+      \strng{fullhashraw}{58b92cfcb315c07981fc2d188f044402}
+      \strng{bibnamehash}{58b92cfcb315c07981fc2d188f044402}
+      \strng{authorbibnamehash}{58b92cfcb315c07981fc2d188f044402}
+      \strng{authornamehash}{e06a061b1bd9b91d96f9ea320b653766}
+      \strng{authorfullhash}{58b92cfcb315c07981fc2d188f044402}
+      \strng{authorfullhashraw}{58b92cfcb315c07981fc2d188f044402}
+      \field{sortinit}{G}
+      \field{sortinithash}{32d67eca0634bf53703493fb1090a2e8}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{22587}
+      \field{title}{How Do Venture Capitalists Make Decisions?}
+      \field{type}{Working Paper}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.3386/w22587
+      \endverb
+      \verb{urlraw}
+      \verb https://www.nber.org/papers/w22587
+      \endverb
+      \verb{url}
+      \verb https://www.nber.org/papers/w22587
+      \endverb
+    \endentry
+    \entry{kaggle-yc-dataset2}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8fec9765921cfa63cb331e42a924c27c}{%
+           family={{Kaggle}},
+           familyi={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{fullhash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{fullhashraw}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{bibnamehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authorbibnamehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authornamehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authorfullhash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authorfullhashraw}{8fec9765921cfa63cb331e42a924c27c}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Y Combinator Companies Dataset}
+      \field{urlday}{14}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/nitishraj/ycombinatorcompanies
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/nitishraj/ycombinatorcompanies
+      \endverb
+    \endentry
+    \entry{kaggle-yc-dataset1}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=8fec9765921cfa63cb331e42a924c27c}{%
+           family={{Kaggle}},
+           familyi={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{fullhash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{fullhashraw}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{bibnamehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authorbibnamehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authornamehash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authorfullhash}{8fec9765921cfa63cb331e42a924c27c}
+      \strng{authorfullhashraw}{8fec9765921cfa63cb331e42a924c27c}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Y Combinator Directory}
+      \field{urlday}{14}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2023}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.kaggle.com/datasets/miguelcorraljr/y-combinator-directory
+      \endverb
+      \verb{url}
+      \verb https://www.kaggle.com/datasets/miguelcorraljr/y-combinator-directory
+      \endverb
+    \endentry
+    \entry{kaiser2020working}{report}{}{}
+      \name{author}{2}{}{%
+        {{hash=a64b9f8696d37979632975780f032e45}{%
+           family={Kaiser},
+           familyi={K\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod}}}%
+        {{hash=c40c12e6ea273164d371b7ab83110fbc}{%
+           family={Kuhn},
+           familyi={K\bibinitperiod},
+           given={Johan\bibnamedelima Moritz},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{institution}{1}{%
+        {IZA Institute of Labor Economics}%
+      }
+      \strng{namehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{fullhash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{fullhashraw}{4504015eb17f864cb48a0a885a57222d}
+      \strng{bibnamehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authorbibnamehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authornamehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authorfullhash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authorfullhashraw}{4504015eb17f864cb48a0a885a57222d}
+      \field{extraname}{1}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{13029}
+      \field{title}{The Value of Publicly Available, Textual and Non-textual Information for Startup Performance Prediction}
+      \field{type}{Discussion Paper}
+      \field{year}{2020}
+      \verb{urlraw}
+      \verb https://docs.iza.org/dp13029.pdf
+      \endverb
+      \verb{url}
+      \verb https://docs.iza.org/dp13029.pdf
+      \endverb
+    \endentry
+    \entry{kaiser2020}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=a64b9f8696d37979632975780f032e45}{%
+           family={Kaiser},
+           familyi={K\bibinitperiod},
+           given={Ulrich},
+           giveni={U\bibinitperiod}}}%
+        {{hash=c40c12e6ea273164d371b7ab83110fbc}{%
+           family={Kuhn},
+           familyi={K\bibinitperiod},
+           given={Johan\bibnamedelima Moritz},
+           giveni={J\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{fullhash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{fullhashraw}{4504015eb17f864cb48a0a885a57222d}
+      \strng{bibnamehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authorbibnamehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authornamehash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authorfullhash}{4504015eb17f864cb48a0a885a57222d}
+      \strng{authorfullhashraw}{4504015eb17f864cb48a0a885a57222d}
+      \field{extraname}{2}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eid}{e00179}
+      \field{journaltitle}{Journal of Business Venturing Insights}
+      \field{title}{The Value of Publicly Available, Textual and Non-textual Information for Startup Performance Prediction}
+      \field{volume}{14}
+      \field{year}{2020}
+      \verb{doi}
+      \verb 10.1016/j.jbvi.2020.e00179
+      \endverb
+    \endentry
+    \entry{kapoor2023}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=d8f567f02ba9a9531285bd06846298de}{%
+           family={Kapoor},
+           familyi={K\bibinitperiod},
+           given={Sayash},
+           giveni={S\bibinitperiod}}}%
+        {{hash=95dc795a2be14c50fb6a924acc135ff8}{%
+           family={Narayanan},
+           familyi={N\bibinitperiod},
+           given={Arvind},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{fullhash}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{fullhashraw}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{bibnamehash}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{authorbibnamehash}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{authornamehash}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{authorfullhash}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \strng{authorfullhashraw}{c082cfb1d4f4958edb5dbe40d2a6d814}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eid}{100804}
+      \field{journaltitle}{Patterns}
+      \field{number}{9}
+      \field{title}{Leakage and the reproducibility crisis in machine-learning-based science}
+      \field{volume}{4}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.1016/j.patter.2023.100804
+      \endverb
+    \endentry
+    \entry{mann-whitney}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5cf19aa5110d49e31bafd83ce394b092}{%
+           family={Mann},
+           familyi={M\bibinitperiod},
+           given={Henry\bibnamedelima B.},
+           giveni={H\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
+        {{hash=c28a32eaa7f3921fc42ff47698be3a36}{%
+           family={Whitney},
+           familyi={W\bibinitperiod},
+           given={Donald\bibnamedelima R.},
+           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+      }
+      \strng{namehash}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{fullhash}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{fullhashraw}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{bibnamehash}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{authorbibnamehash}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{authornamehash}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{authorfullhash}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{authorfullhashraw}{faa025e01f364e80ee2e1076e0bc30ac}
+      \field{sortinit}{M}
+      \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Annals of Mathematical Statistics}
+      \field{number}{1}
+      \field{title}{On a test of whether one of two random variables is stochastically larger than the other}
+      \field{volume}{18}
+      \field{year}{1947}
+      \field{pages}{50\bibrangedash 60}
+      \range{pages}{11}
+    \endentry
+    \entry{pearson-corr}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=b69135425e9c9d6adc927b94c33421d4}{%
+           family={Pearson},
+           familyi={P\bibinitperiod},
+           given={Karl},
+           giveni={K\bibinitperiod}}}%
+      }
+      \strng{namehash}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{fullhash}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{fullhashraw}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{bibnamehash}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{authorbibnamehash}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{authornamehash}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{authorfullhash}{b69135425e9c9d6adc927b94c33421d4}
+      \strng{authorfullhashraw}{b69135425e9c9d6adc927b94c33421d4}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Proceedings of the Royal Society of London}
+      \field{title}{Notes on regression and inheritance in the case of two parents}
+      \field{volume}{58}
+      \field{year}{1895}
+      \field{pages}{240\bibrangedash 242}
+      \range{pages}{3}
+    \endentry
+    \entry{catboost-paper}{online}{}{}
+      \name{author}{5}{}{%
+        {{hash=75d85fbaf5e44febf90b390cb205c49e}{%
+           family={Prokhorenkova},
+           familyi={P\bibinitperiod},
+           given={Liudmila},
+           giveni={L\bibinitperiod}}}%
+        {{hash=d99ea4ed468e2d3f8bc4082b7d308161}{%
+           family={Gusev},
+           familyi={G\bibinitperiod},
+           given={Gleb},
+           giveni={G\bibinitperiod}}}%
+        {{hash=4eea157d768ad9f7d675c1cb1624b822}{%
+           family={Vorobev},
+           familyi={V\bibinitperiod},
+           given={Aleksandr},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a2bbc57c5fa93135342ee3c846b63db3}{%
+           family={Dorogush},
+           familyi={D\bibinitperiod},
+           given={Anna\bibnamedelima Veronika},
+           giveni={A\bibinitperiod\bibinitdelim V\bibinitperiod}}}%
+        {{hash=b0bbfa15913cf76eff37e68538d3927e}{%
+           family={Gulin},
+           familyi={G\bibinitperiod},
+           given={Andrey},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{bf2200e049515471bef98bbe4ddd078a}
+      \strng{fullhash}{be3384044cde3b920a17c00545fb90a0}
+      \strng{fullhashraw}{be3384044cde3b920a17c00545fb90a0}
+      \strng{bibnamehash}{be3384044cde3b920a17c00545fb90a0}
+      \strng{authorbibnamehash}{be3384044cde3b920a17c00545fb90a0}
+      \strng{authornamehash}{bf2200e049515471bef98bbe4ddd078a}
+      \strng{authorfullhash}{be3384044cde3b920a17c00545fb90a0}
+      \strng{authorfullhashraw}{be3384044cde3b920a17c00545fb90a0}
+      \field{sortinit}{P}
+      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{eprinttype}{arxiv}
+      \field{title}{{CatBoost}: unbiased boosting with categorical features}
+      \field{urlday}{13}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2019}
+      \field{urldateera}{ce}
+      \verb{eprint}
+      \verb 1706.09516
+      \endverb
+      \verb{urlraw}
+      \verb https://arxiv.org/abs/1706.09516
+      \endverb
+      \verb{url}
+      \verb https://arxiv.org/abs/1706.09516
+      \endverb
+    \endentry
+    \entry{ross2021}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=2620025a23cdd806c069b1bf09b83cb0}{%
+           family={Ross},
+           familyi={R\bibinitperiod},
+           given={Greg},
+           giveni={G\bibinitperiod}}}%
+        {{hash=2fe818d2ca756f8bafaac95ad246a84f}{%
+           family={Das},
+           familyi={D\bibinitperiod},
+           given={Sanjiv\bibnamedelima Ranjan},
+           giveni={S\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=188c1ae56353f7add42ceeaa9d590d46}{%
+           family={Sciro},
+           familyi={S\bibinitperiod},
+           given={Daniel},
+           giveni={D\bibinitperiod}}}%
+        {{hash=6e07c6a59d1b2042298a7452226a474f}{%
+           family={Raza},
+           familyi={R\bibinitperiod},
+           given={Hussain},
+           giveni={H\bibinitperiod}}}%
+      }
+      \strng{namehash}{a97681e27b28360f3396b315a95957a6}
+      \strng{fullhash}{970e35db73aa44ee5e59383cd9f91050}
+      \strng{fullhashraw}{970e35db73aa44ee5e59383cd9f91050}
+      \strng{bibnamehash}{970e35db73aa44ee5e59383cd9f91050}
+      \strng{authorbibnamehash}{970e35db73aa44ee5e59383cd9f91050}
+      \strng{authornamehash}{a97681e27b28360f3396b315a95957a6}
+      \strng{authorfullhash}{970e35db73aa44ee5e59383cd9f91050}
+      \strng{authorfullhashraw}{970e35db73aa44ee5e59383cd9f91050}
+      \field{sortinit}{R}
+      \field{sortinithash}{5e1c39a9d46ffb6bebd8f801023a9486}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{The Journal of Finance and Data Science}
+      \field{title}{{CapitalVX}: A machine learning model for startup selection and exit prediction}
+      \field{volume}{7}
+      \field{year}{2021}
+      \field{pages}{94\bibrangedash 114}
+      \range{pages}{21}
+      \verb{doi}
+      \verb 10.1016/j.jfds.2021.04.001
+      \endverb
+    \endentry
+    \entry{sklearn-metrics}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2ad72e574157d613a63fe8732cf468a8}{%
+           family={{scikit-learn developers}},
+           familyi={s\bibinitperiod}}}%
+      }
+      \strng{namehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{fullhash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{fullhashraw}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{bibnamehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authorbibnamehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authornamehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authorfullhash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authorfullhashraw}{2ad72e574157d613a63fe8732cf468a8}
+      \field{extraname}{1}
+      \field{sortinit}{s}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Metrics and scoring: quantifying the quality of predictions}
+      \field{urlday}{13}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://scikit-learn.org/stable/modules/model_evaluation.html
+      \endverb
+      \verb{url}
+      \verb https://scikit-learn.org/stable/modules/model_evaluation.html
+      \endverb
+    \endentry
+    \entry{sklearn-nested}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2ad72e574157d613a63fe8732cf468a8}{%
+           family={{scikit-learn developers}},
+           familyi={s\bibinitperiod}}}%
+      }
+      \strng{namehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{fullhash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{fullhashraw}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{bibnamehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authorbibnamehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authornamehash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authorfullhash}{2ad72e574157d613a63fe8732cf468a8}
+      \strng{authorfullhashraw}{2ad72e574157d613a63fe8732cf468a8}
+      \field{extraname}{2}
+      \field{sortinit}{s}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Nested versus non-nested cross-validation}
+      \field{urlday}{13}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html
+      \endverb
+      \verb{url}
+      \verb https://scikit-learn.org/stable/auto_examples/model_selection/plot_nested_cross_validation_iris.html
+      \endverb
+    \endentry
+    \entry{shap-causality}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=7bfb009c943db698db28d9a3dd0fdc31}{%
+           family={{SHAP developers}},
+           familyi={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{fullhash}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{fullhashraw}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{bibnamehash}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{authorbibnamehash}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{authornamehash}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{authorfullhash}{7bfb009c943db698db28d9a3dd0fdc31}
+      \strng{authorfullhashraw}{7bfb009c943db698db28d9a3dd0fdc31}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Be careful when interpreting predictive models in search of causal insights}
+      \field{urlday}{13}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%20insights.html
+      \endverb
+      \verb{url}
+      \verb https://shap.readthedocs.io/en/latest/example_notebooks/overviews/Be%20careful%20when%20interpreting%20predictive%20models%20in%20search%20of%20causal%20insights.html
+      \endverb
+    \endentry
+    \entry{sharchilev2018}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=d7133923fd2b2d16cbee13ec614520ac}{%
+           family={Sharchilev},
+           familyi={S\bibinitperiod},
+           given={Boris},
+           giveni={B\bibinitperiod}}}%
+        {{hash=975ea3f028a1a854caa58fec47673da6}{%
+           family={Roizner},
+           familyi={R\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e6131586b96778b6e137c4bc1a94de4b}{%
+           family={Rumyantsev},
+           familyi={R\bibinitperiod},
+           given={Andrey},
+           giveni={A\bibinitperiod}}}%
+        {{hash=91d06d5943fb85ac240150b5f95e8226}{%
+           family={Ozornin},
+           familyi={O\bibinitperiod},
+           given={Denis},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c411538c1813fa1c3c8ba3b8132f24a6}{%
+           family={Serdyukov},
+           familyi={S\bibinitperiod},
+           given={Pavel},
+           giveni={P\bibinitperiod}}}%
+        {{hash=ce8500c4435316ca20758d1f88f330bb}{%
+           family={Rijke},
+           familyi={R\bibinitperiod},
+           given={Maarten},
+           giveni={M\bibinitperiod},
+           prefix={de},
+           prefixi={d\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{a2401c1e900045ce15f440745581d2d2}
+      \strng{fullhash}{ad1695764fd848c23d1b5d41f02e8bc9}
+      \strng{fullhashraw}{ad1695764fd848c23d1b5d41f02e8bc9}
+      \strng{bibnamehash}{ad1695764fd848c23d1b5d41f02e8bc9}
+      \strng{authorbibnamehash}{ad1695764fd848c23d1b5d41f02e8bc9}
+      \strng{authornamehash}{a2401c1e900045ce15f440745581d2d2}
+      \strng{authorfullhash}{ad1695764fd848c23d1b5d41f02e8bc9}
+      \strng{authorfullhashraw}{ad1695764fd848c23d1b5d41f02e8bc9}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 27th ACM International Conference on Information and Knowledge Management}
+      \field{title}{Web-based Startup Success Prediction}
+      \field{year}{2018}
+      \verb{doi}
+      \verb 10.1145/3269206.3272011
+      \endverb
+      \verb{urlraw}
+      \verb https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/sharchilev-web-based-2018.pdf
+      \endverb
+      \verb{url}
+      \verb https://staff.fnwi.uva.nl/m.derijke/wp-content/papercite-data/pdf/sharchilev-web-based-2018.pdf
+      \endverb
+    \endentry
+    \entry{shmueli2010}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=e5932cf12165e5dd654a70a1b84c0c17}{%
+           family={Shmueli},
+           familyi={S\bibinitperiod},
+           given={Galit},
+           giveni={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{fullhash}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{fullhashraw}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{bibnamehash}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{authorbibnamehash}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{authornamehash}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{authorfullhash}{e5932cf12165e5dd654a70a1b84c0c17}
+      \strng{authorfullhashraw}{e5932cf12165e5dd654a70a1b84c0c17}
+      \field{sortinit}{S}
+      \field{sortinithash}{b164b07b29984b41daf1e85279fbc5ab}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Statistical Science}
+      \field{number}{3}
+      \field{title}{To Explain or to Predict?}
+      \field{volume}{25}
+      \field{year}{2010}
+      \field{pages}{289\bibrangedash 310}
+      \range{pages}{22}
+      \verb{doi}
+      \verb 10.1214/10-STS330
+      \endverb
+    \endentry
+    \entry{wikikaggle}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={{Wikipedia}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \field{extraname}{1}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Kaggle}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ru.wikipedia.org/wiki/Kaggle
+      \endverb
+      \verb{url}
+      \verb https://ru.wikipedia.org/wiki/Kaggle
+      \endverb
+    \endentry
+    \entry{wikiEDA}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9c677286866aad38f8e9b660f5411814}{%
+           family={{Wikipedia}},
+           familyi={W\bibinitperiod}}}%
+      }
+      \strng{namehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{fullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \strng{bibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorbibnamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authornamehash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhash}{9c677286866aad38f8e9b660f5411814}
+      \strng{authorfullhashraw}{9c677286866aad38f8e9b660f5411814}
+      \field{extraname}{2}
+      \field{sortinit}{W}
+      \field{sortinithash}{4315d78024d0cea9b57a0c6f0e35ed0d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Разведочный анализ данных}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://ru.wikipedia.org/wiki/Разведочный_анализ_данных
+      \endverb
+      \verb{url}
+      \verb https://ru.wikipedia.org/wiki/%D0%A0%D0%B0%D0%B7%D0%B2%D0%B5%D0%B4%D0%BE%D1%87%D0%BD%D1%8B%D0%B9_%D0%B0%D0%BD%D0%B0%D0%BB%D0%B8%D0%B7_%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85
+      \endverb
+    \endentry
+    \entry{yc-directory}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2d58e7f604d0f678abd6b1e940df81e5}{%
+           family={{Y Combinator}},
+           familyi={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{fullhash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{fullhashraw}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{bibnamehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authorbibnamehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authornamehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authorfullhash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authorfullhashraw}{2d58e7f604d0f678abd6b1e940df81e5}
+      \field{extraname}{1}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{The YC Startup Directory}
+      \field{urlday}{10}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ycombinator.com/companies
+      \endverb
+      \verb{url}
+      \verb https://www.ycombinator.com/companies
+      \endverb
+    \endentry
+    \entry{ycombinator}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=2d58e7f604d0f678abd6b1e940df81e5}{%
+           family={{Y Combinator}},
+           familyi={Y\bibinitperiod}}}%
+      }
+      \strng{namehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{fullhash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{fullhashraw}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{bibnamehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authorbibnamehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authornamehash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authorfullhash}{2d58e7f604d0f678abd6b1e940df81e5}
+      \strng{authorfullhashraw}{2d58e7f604d0f678abd6b1e940df81e5}
+      \field{extraname}{2}
+      \field{sortinit}{Y}
+      \field{sortinithash}{fd67ad5a9ef0f7456bdd9aab10fe1495}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Y Combinator}
+      \field{urlday}{10}
+      \field{urlmonth}{2}
+      \field{urlyear}{2025}
+      \field{year}{2025}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.ycombinator.com/
+      \endverb
+      \verb{url}
+      \verb https://www.ycombinator.com/
+      \endverb
+    \endentry
+    \entry{vtbstartup}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=9129c15f7ba44ec55cd17b94b4319b78}{%
+           family={{ВТБ}},
+           familyi={В\bibinitperiod}}}%
+      }
+      \strng{namehash}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{fullhash}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{fullhashraw}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{bibnamehash}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{authorbibnamehash}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{authornamehash}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{authorfullhash}{9129c15f7ba44ec55cd17b94b4319b78}
+      \strng{authorfullhashraw}{9129c15f7ba44ec55cd17b94b4319b78}
+      \field{sortinit}{В}
+      \field{sortinithash}{769561dacf0468c568f33adb4926797c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Что такое стартап}
+      \field{urlday}{30}
+      \field{urlmonth}{1}
+      \field{urlyear}{2025}
+      \field{year}{2024}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://vtb.ru/articles/chto-takoe-startap/
+      \endverb
+      \verb{url}
+      \verb https://vtb.ru/articles/chto-takoe-startap/
+      \endverb
+    \endentry
+    \entry{ipo}{online}{}{}
+      \name{author}{1}{}{%
+        {{hash=e8aaeb3489adbea1b639aa6778a23892}{%
+           family={{РБК}},
+           familyi={Р\bibinitperiod}}}%
+      }
+      \strng{namehash}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{fullhash}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{fullhashraw}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{bibnamehash}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{authorbibnamehash}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{authornamehash}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{authorfullhash}{e8aaeb3489adbea1b639aa6778a23892}
+      \strng{authorfullhashraw}{e8aaeb3489adbea1b639aa6778a23892}
+      \field{sortinit}{Р}
+      \field{sortinithash}{72653a62bb3cb54ced08865870aff9d6}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Что такое IPO: как компания выходит на биржу}
+      \field{urlday}{25}
+      \field{urlmonth}{3}
+      \field{urlyear}{2025}
+      \field{year}{2022}
+      \field{urldateera}{ce}
+      \verb{urlraw}
+      \verb https://www.rbc.ru/quote/news/training/5e25ceaf9a79471671787078
+      \endverb
+      \verb{url}
+      \verb https://www.rbc.ru/quote/news/training/5e25ceaf9a79471671787078
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

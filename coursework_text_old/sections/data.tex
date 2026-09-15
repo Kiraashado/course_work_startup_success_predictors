@@ -1,0 +1,96 @@
+\newpage
+
+\section{Описание данных}
+
+\subsection{Источники данных}
+
+В качестве источника данных использовались три датасета с информацией о стартапах, прошедших акселератор Y Combinator~\cite{ycombinator}, опубликованные на платформе Kaggle~\cite{kaggle-yc-dataset}:
+
+\begin{itemize}
+    \item \texttt{2023-02-27-yc-companies.csv} --- срез данных за февраль 2023 года
+    \item \texttt{2023-07-13-yc-companies.csv} --- срез данных за июль 2023 года
+    \item \texttt{yc\_companies.csv} --- актуальный срез данных за 2026 год
+\end{itemize}
+
+\subsection{Структура датасетов}
+
+Первые два датасета имеют одинаковую структуру и содержат информацию о примерно 4100 компаниях каждый. Основные поля представлены в Таблице~\ref{tab:ds12}.
+
+\begin{table}[htbp]
+\centering
+\small
+\caption{Структура датасетов 2023 года}
+\label{tab:ds12}
+\begin{tabular}{@{}l l p{8cm}@{}}
+\toprule
+\textbf{Поле} & \textbf{Тип} & \textbf{Описание} \\
+\midrule
+company\_id & int & Уникальный идентификатор компании \\
+company\_name & str & Название компании \\
+short\_description & str & Краткое описание \\
+batch & str & Батч YC (например, W22, S21) \\
+status & str & Статус: active / inactive / acquired / public \\
+tags & str & Теги и категории \\
+country & str & Страна \\
+year\_founded & float & Год основания \\
+num\_founders & int & Количество основателей \\
+team\_size & float & Размер команды \\
+cb\_url & str & Ссылка на профиль в Crunchbase \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Третий датасет содержит 5739 компаний и имеет расширенную структуру с дополнительными полями, несущими существенную информацию: \texttt{industry}, \texttt{subindustry}, \texttt{top\_company}, \texttt{isHiring}, \texttt{nonprofit}, \texttt{stage}, \texttt{regions}.
+
+\subsection{Целевая переменная}
+
+Ключевым полем для анализа является \texttt{status}, принимающий одно из четырех значений:
+
+\begin{itemize}
+    \item \textbf{active} --- компания активна
+    \item \textbf{inactive} --- компания закрылась или неактивна
+    \item \textbf{acquired} --- компания была поглощена
+    \item \textbf{public} --- компания вышла на IPO
+\end{itemize}
+
+Для целей анализа была введена бинаризация: \textbf{success} сопоставляются статусы acquired и public (компания достигла значимого результата: была продана, либо стала крупной публичной компанией), \textbf{failure} --- статус inactive (компания прекратила деятельность). Компании со статусом active были исключены из сравнительного анализа, так как итоговый исход их деятельности еще не известен.
+
+\subsection{Предобработка и объединение данных}
+
+\subsubsection{Объединение срезов 2023 года}
+
+Два датасета 2023 года были объединены в единый датасет \texttt{final}. Для каждого идентификатора компании была оставлена более свежая запись (из июльского среза). Дополнительно были созданы флаги изменений между двумя срезами: \texttt{has\_changes}, \texttt{status\_changed}, \texttt{team\_size\_changed} и другие. Итоговый датасет содержит 4312 уникальных компаний.
+
+\subsubsection{Подготовка датасета 2025 года}
+
+В третьем датасете формат батча был приведён к таковому в первых двух датасетах. Удалены малоинформативные колонки.
+
+\subsubsection{Формирование аналитических датасетов}
+
+На основе подготовленных данных были сформированы два аналитических датасета:
+
+\begin{itemize}
+    \item \textbf{Датасет A} (основной, для описательной аналитики) --- на основе датасета 2025 года, дополненный колонками из 2023 года (\texttt{year\_founded}, \texttt{num\_founders}, \texttt{country} и др.). Содержит 5739 компаний.
+    \item \textbf{Датасет B} (для анализа динамики) --- только компании, присутствующие в обоих срезах (4202 компании, как показано на Рис.~\ref{fig:venn}). Признаки из 2023 года используются как информация из прошлого, статус и характеристики из 2025 года --- как текущая, актуальная информация.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=0.75\textwidth]{venn_datasets.png}
+    \caption{Пересечение датасетов по идентификаторам компаний}
+    \label{fig:venn}
+\end{figure}
+
+\subsubsection{Инженерия признаков}
+
+Для проверки гипотез были созданы следующие производные признаки:
+
+\begin{itemize}
+    \item \texttt{batch\_year} --- год батча, извлеченный из кода батча
+    \item \texttt{batch\_season} --- сезон батча (Winter, Summer)
+    \item \texttt{status\_binary} --- бинарный статус: success, failure или active (третий вариант трактуется как отсутсвие статуса)
+    \item \texttt{is\_solo\_founder} --- флаг единственности основателя (1 если \texttt{num\_founders} = 1)
+    \item \texttt{tag\_count} --- количество тегов у компании
+    \item \texttt{desc\_length} --- длина краткого описания компании (в символах)
+    \item \texttt{is\_us} --- флаг принадлежности к США
+\end{itemize}
