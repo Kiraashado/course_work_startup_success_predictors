@@ -208,8 +208,6 @@ def make_splits(y, groups, scheme, seed, n_splits):
         splitter = StratifiedKFold(n_splits=n_splits, shuffle=True, random_state=seed)
         splits = list(splitter.split(np.zeros(len(y)), y))
     elif scheme == "grouped":
-        # Randomize entire groups, balancing both sample counts and events.
-        # Candidate choice uses only fold composition, never model performance.
         unique, inverse = np.unique(groups, return_inverse=True)
         if len(unique) < n_splits:
             raise ValueError("Недостаточно наборов для групповой проверки")

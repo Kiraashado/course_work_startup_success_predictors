@@ -103,7 +103,6 @@ def clean_snapshot(raw, source):
             bad |= values.eq(0) | (values > int(date[:4]))
         invalid[col] = int(bad.sum())
         df[col] = values.mask(bad).astype("Float64")
-    # Год основания известен без месяца и дня, поэтому возраст измеряется разностью лет.
     df["company_age"] = int(date[:4]) - df["year_founded"]
     parsed = df["batch"].map(parse_batch)
     df["batch_year"] = pd.array([item[0] for item in parsed], dtype="Int64")
@@ -112,7 +111,6 @@ def clean_snapshot(raw, source):
     df["future_batch"] = df["batch_year"].gt(int(date[:4])).fillna(False)
     invalid["future_batch_year"] = int(df["future_batch"].sum())
     df.loc[df["future_batch"], "batch_year"] = pd.NA
-    # Страна берётся только из поля исходного среза, без географических догадок.
     df["country"] = df["country"].astype("string").str.upper().replace(
         {"USA": "US", "UNITED STATES": "US", "UK": "GB", "UNITED KINGDOM": "GB"}
     )

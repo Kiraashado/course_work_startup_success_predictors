@@ -273,7 +273,6 @@ def extended_reports(metrics, comparisons, protocol):
     ax.set_yticks(range(len(tags)), tags.tag, fontsize=10); ax.invert_yaxis()
     ax.axvline(0,color="gray",linestyle="--"); ax.set_xlabel("Коэффициент при наличии метки; логарифм шансов")
     save(fig,"07_tag_coefficients","12 самых частых меток в выборке с известным исходом. Медиана и 10–90%-ный диапазон коэффициентов по 25 групповым обучающим частям; это не доверительные интервалы и не причинные эффекты.")
-    # Empirical heterogeneity across batches for the principal comparison.
     batches = pd.read_csv(OUT / "gains_by_batch.csv")
     b = batches[batches.scheme.eq("grouped") & batches.comparison.eq("Тематические теги")].sort_values("batch")
     fig,ax=canvas("Добавление тегов: различия между наборами YC",protocol,(12,9))
@@ -356,7 +355,6 @@ def main():
         raise RuntimeError("Код моделирования изменился после обучения")
     metrics = pd.read_csv(OUT / "metrics.csv")
     comparisons = pd.read_csv(OUT / "comparisons.csv")
-    # Preserve ties and ordering of nearly equal probabilities after CSV round trip.
     predictions = pd.read_csv(OUT / "predictions.csv", float_precision="round_trip")
     shap = pd.read_csv(OUT / "shap_oof.csv")
     suite = json.loads((OUT / "suite_complete.json").read_text())
