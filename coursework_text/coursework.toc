@@ -1,60 +1,63 @@
 \babel@toc {russian}{}\relax 
-\contentsline {section}{Аннотация}{4}{section*.2}%
-\contentsline {section}{\numberline {1}Основные термины и определения}{5}{section.1}%
+\contentsline {section}{Аннотация}{5}{section*.2}%
+\contentsline {section}{\numberline {1}Основные термины и определения}{6}{section.1}%
 \contentsline {section}{\numberline {2}Введение}{6}{section.2}%
 \contentsline {subsection}{\numberline {2.1}Актуальность работы}{6}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Цель}{7}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Объект исследования}{7}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Предмет исследования}{8}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Методы исследования}{8}{subsection.2.5}%
-\contentsline {subsubsection}{\numberline {2.5.1}Методы предобработки данных}{8}{subsubsection.2.5.1}%
-\contentsline {subsubsection}{\numberline {2.5.2}Разведочный анализ данных (EDA)}{8}{subsubsection.2.5.2}%
-\contentsline {subsubsection}{\numberline {2.5.3}Статистический анализ и прогнозное моделирование}{9}{subsubsection.2.5.3}%
-\contentsline {subsubsection}{\numberline {2.5.4}Анализ динамики}{9}{subsubsection.2.5.4}%
-\contentsline {subsubsection}{\numberline {2.5.5}Инструменты визуализации}{9}{subsubsection.2.5.5}%
-\contentsline {subsection}{\numberline {2.6}Задачи}{9}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}План работы}{10}{subsection.2.7}%
-\contentsline {section}{\numberline {3}Обзор литературы}{13}{section.3}%
-\contentsline {subsection}{\numberline {3.1}Определение результата}{13}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}Характеристики компаний и прогнозный анализ}{13}{subsection.3.2}%
-\contentsline {subsection}{\numberline {3.3}Публичные сведения и текстовые признаки}{14}{subsection.3.3}%
-\contentsline {subsection}{\numberline {3.4}Время наблюдения и проверка качества}{15}{subsection.3.4}%
-\contentsline {section}{\numberline {4}Описание данных}{16}{section.4}%
-\contentsline {subsection}{\numberline {4.1}Источники и даты наблюдения}{16}{subsection.4.1}%
-\contentsline {subsection}{\numberline {4.2}Поля исходных файлов}{17}{subsection.4.2}%
-\contentsline {subsection}{\numberline {4.3}Формирование исследуемой группы и производные поля}{19}{subsection.4.3}%
-\contentsline {subsection}{\numberline {4.4}Последующий статус и границы наблюдения}{21}{subsection.4.4}%
-\contentsline {subsection}{\numberline {4.5}Проверки и воспроизводимость}{21}{subsection.4.5}%
-\contentsline {section}{\numberline {5}Разведочный анализ данных}{22}{section.5}%
-\contentsline {subsection}{\numberline {5.1}Формирование исследуемой совокупности}{22}{subsection.5.1}%
-\contentsline {subsection}{\numberline {5.2}Полнота исходных характеристик}{22}{subsection.5.2}%
-\contentsline {subsection}{\numberline {5.3}Последующие статусы и наблюдаемый показатель успеха}{23}{subsection.5.3}%
-\contentsline {subsection}{\numberline {5.4}Годы набора и доступность последующих статусов}{24}{subsection.5.4}%
-\contentsline {subsection}{\numberline {5.5}Распределения числовых характеристик}{26}{subsection.5.5}%
-\contentsline {subsection}{\numberline {5.6}Исходный размер команды в группах последующего статуса}{27}{subsection.5.6}%
-\contentsline {subsection}{\numberline {5.7}Связи между числовыми признаками}{28}{subsection.5.7}%
-\contentsline {subsection}{\numberline {5.8}Географический состав}{28}{subsection.5.8}%
-\contentsline {subsection}{\numberline {5.9}Тематические теги исходных карточек}{30}{subsection.5.9}%
-\contentsline {section}{\numberline {6}Методология прогнозного анализа}{33}{section.6}%
-\contentsline {subsection}{\numberline {6.1}Задача и границы первого эксперимента}{33}{subsection.6.1}%
-\contentsline {subsection}{\numberline {6.2}Сравниваемые модели и обработка признаков}{33}{subsection.6.2}%
-\contentsline {subsection}{\numberline {6.3}Вложенная перекрёстная проверка}{34}{subsection.6.3}%
-\contentsline {subsection}{\numberline {6.4}Метрики и дополнительная полезность признаков}{36}{subsection.6.4}%
-\contentsline {subsection}{\numberline {6.5}Объяснение прогнозов с помощью SHAP}{37}{subsection.6.5}%
-\contentsline {section}{\numberline {7}Прогностическая полезность характеристик команды}{38}{section.7}%
-\contentsline {subsection}{\numberline {7.1}Качество прогноза в основной схеме}{38}{subsection.7.1}%
-\contentsline {subsection}{\numberline {7.2}Дополнительная информация о команде}{39}{subsection.7.2}%
-\contentsline {subsection}{\numberline {7.3}Проверка с разделением наборов YC}{41}{subsection.7.3}%
-\contentsline {subsection}{\numberline {7.4}Вероятности и наблюдаемые частоты}{43}{subsection.7.4}%
-\contentsline {subsection}{\numberline {7.5}Вклад признаков в прогнозы CatBoost}{45}{subsection.7.5}%
-\contentsline {subsection}{\numberline {7.6}Выводы первого эксперимента}{46}{subsection.7.6}%
-\contentsline {section}{\numberline {8}Корреляционный анализ}{47}{section.8}%
-\contentsline {section}{\numberline {9}Анализ динамики (2023--2025)}{48}{section.9}%
-\contentsline {subsection}{\numberline {9.1}Матрица переходов статусов}{48}{subsection.9.1}%
-\contentsline {subsection}{\numberline {9.2}Динамика размера команды}{49}{subsection.9.2}%
-\contentsline {section}{\numberline {10}Выводы и рекомендации}{50}{section.10}%
-\contentsline {subsection}{\numberline {10.1}Основные результаты}{50}{subsection.10.1}%
-\contentsline {subsection}{\numberline {10.2}Методологический вклад}{51}{subsection.10.2}%
-\contentsline {subsection}{\numberline {10.3}Ограничения исследования}{51}{subsection.10.3}%
-\contentsline {subsection}{\numberline {10.4}Рекомендации}{51}{subsection.10.4}%
-\contentsline {section}{Список литературы}{53}{section*.25}%
+\contentsline {subsection}{\numberline {2.2}Цель}{6}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Объект исследования}{6}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Предмет исследования}{7}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Методы исследования}{7}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Методы предобработки данных}{7}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Разведочный анализ данных (EDA)}{7}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Статистический анализ и прогнозное моделирование}{7}{subsubsection.2.5.3}%
+\contentsline {subsubsection}{\numberline {2.5.4}Инструменты визуализации}{7}{subsubsection.2.5.4}%
+\contentsline {subsection}{\numberline {2.6}Задачи}{7}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}План работы}{7}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Использование генеративных моделей}{8}{subsection.2.8}%
+\contentsline {section}{\numberline {3}Обзор литературы}{9}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Определение результата}{9}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Характеристики компаний и прогнозный анализ}{9}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Публичные сведения и текстовые признаки}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Время наблюдения и проверка качества}{9}{subsection.3.4}%
+\contentsline {section}{\numberline {4}Описание данных}{10}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Источники и даты наблюдения}{10}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Поля исходных файлов}{11}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Формирование исследуемой группы и производные поля}{12}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Последующий статус и границы наблюдения}{12}{subsection.4.4}%
+\contentsline {subsection}{\numberline {4.5}Проверки и воспроизводимость}{13}{subsection.4.5}%
+\contentsline {section}{\numberline {5}Разведочный анализ данных}{14}{section.5}%
+\contentsline {subsection}{\numberline {5.1}Формирование исследуемой совокупности}{14}{subsection.5.1}%
+\contentsline {subsection}{\numberline {5.2}Полнота исходных характеристик}{14}{subsection.5.2}%
+\contentsline {subsection}{\numberline {5.3}Последующие статусы и наблюдаемый показатель успеха}{14}{subsection.5.3}%
+\contentsline {subsection}{\numberline {5.4}Годы набора и доступность последующих статусов}{15}{subsection.5.4}%
+\contentsline {subsection}{\numberline {5.5}Распределения числовых характеристик}{15}{subsection.5.5}%
+\contentsline {subsection}{\numberline {5.6}Исходный размер команды в группах последующего статуса}{17}{subsection.5.6}%
+\contentsline {subsection}{\numberline {5.7}Зависимости между исходными числовыми признаками}{17}{subsection.5.7}%
+\contentsline {subsection}{\numberline {5.8}Географический состав}{19}{subsection.5.8}%
+\contentsline {subsection}{\numberline {5.9}Тематические теги исходных карточек}{19}{subsection.5.9}%
+\contentsline {section}{\numberline {6}Методология прогнозного анализа}{21}{section.6}%
+\contentsline {subsection}{\numberline {6.1}Прогнозируемый исход}{21}{subsection.6.1}%
+\contentsline {subsection}{\numberline {6.2}Блоки признаков и модели}{21}{subsection.6.2}%
+\contentsline {subsection}{\numberline {6.3}Учёт дисбаланса классов}{21}{subsection.6.3}%
+\contentsline {subsection}{\numberline {6.4}Схема проверки}{21}{subsection.6.4}%
+\contentsline {subsection}{\numberline {6.5}Метрики качества}{21}{subsection.6.5}%
+\contentsline {subsection}{\numberline {6.6}Сравнение признаков и неопределённость}{22}{subsection.6.6}%
+\contentsline {subsection}{\numberline {6.7}Интерпретация и проверки чувствительности}{22}{subsection.6.7}%
+\contentsline {section}{\numberline {7}Прогностическая полезность характеристик компаний}{23}{section.7}%
+\contentsline {subsection}{\numberline {7.1}Качество вероятностного прогноза}{23}{subsection.7.1}%
+\contentsline {subsection}{\numberline {7.2}Разнообразие разбиений и разброс результатов}{23}{subsection.7.2}%
+\contentsline {subsection}{\numberline {7.3}Добавление и исключение блоков признаков}{23}{subsection.7.3}%
+\contentsline {subsection}{\numberline {7.4}Ранжирование редкого исхода и веса классов}{26}{subsection.7.4}%
+\contentsline {subsection}{\numberline {7.5}Соответствие вероятностей наблюдаемым частотам}{26}{subsection.7.5}%
+\contentsline {subsection}{\numberline {7.6}Интерпретация тематических меток}{30}{subsection.7.6}%
+\contentsline {subsection}{\numberline {7.7}Вспомогательное объяснение CatBoost}{31}{subsection.7.7}%
+\contentsline {subsection}{\numberline {7.8}Чувствительность к составу совокупности и исхода}{31}{subsection.7.8}%
+\contentsline {subsection}{\numberline {7.9}Выводы прогнозного эксперимента}{32}{subsection.7.9}%
+\contentsline {section}{\numberline {8}Заключение}{33}{section.8}%
+\contentsline {subsection}{\numberline {8.1}Выполненные задачи}{33}{subsection.8.1}%
+\contentsline {subsection}{\numberline {8.2}Основные результаты}{33}{subsection.8.2}%
+\contentsline {subsection}{\numberline {8.3}Ограничения исследования}{33}{subsection.8.3}%
+\contentsline {subsection}{\numberline {8.4}Выводы и рекомендации}{34}{subsection.8.4}%
+\contentsline {section}{\numberline {9}Описание применения генеративных моделей}{35}{section.9}%
+\contentsline {section}{Список литературы}{36}{section*.30}%
+\contentsline {section}{\numberline {A}Первоначальный план проекта}{39}{appendix.A}%

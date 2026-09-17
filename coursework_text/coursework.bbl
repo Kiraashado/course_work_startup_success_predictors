@@ -347,65 +347,75 @@
       \verb 10.1016/j.patter.2023.100804
       \endverb
     \endentry
-    \entry{mann-whitney}{article}{}{}
+    \entry{wald-aircraft}{article}{}{}
       \name{author}{2}{}{%
-        {{hash=5cf19aa5110d49e31bafd83ce394b092}{%
-           family={Mann},
+        {{hash=ef99b213825caf0580ced9127055395e}{%
+           family={Mangel},
            familyi={M\bibinitperiod},
-           given={Henry\bibnamedelima B.},
-           giveni={H\bibinitperiod\bibinitdelim B\bibinitperiod}}}%
-        {{hash=c28a32eaa7f3921fc42ff47698be3a36}{%
-           family={Whitney},
-           familyi={W\bibinitperiod},
-           given={Donald\bibnamedelima R.},
-           giveni={D\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=4a71c8aa98e423628b1ac81c9304790a}{%
+           family={Samaniego},
+           familyi={S\bibinitperiod},
+           given={Francisco\bibnamedelima J.},
+           giveni={F\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
       }
-      \strng{namehash}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{fullhash}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{fullhashraw}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{bibnamehash}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{authorbibnamehash}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{authornamehash}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{authorfullhash}{faa025e01f364e80ee2e1076e0bc30ac}
-      \strng{authorfullhashraw}{faa025e01f364e80ee2e1076e0bc30ac}
+      \strng{namehash}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{fullhash}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{fullhashraw}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{bibnamehash}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{authorbibnamehash}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{authornamehash}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{authorfullhash}{32e81eb9a997ca65272b2850af7a3282}
+      \strng{authorfullhashraw}{32e81eb9a997ca65272b2850af7a3282}
       \field{sortinit}{M}
       \field{sortinithash}{4625c616857f13d17ce56f7d4f97d451}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{The Annals of Mathematical Statistics}
-      \field{number}{1}
-      \field{title}{On a test of whether one of two random variables is stochastically larger than the other}
-      \field{volume}{18}
-      \field{year}{1947}
-      \field{pages}{50\bibrangedash 60}
-      \range{pages}{11}
+      \field{journaltitle}{Journal of the American Statistical Association}
+      \field{number}{386}
+      \field{title}{Abraham Wald's Work on Aircraft Survivability}
+      \field{volume}{79}
+      \field{year}{1984}
+      \field{pages}{259\bibrangedash 267}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1080/01621459.1984.10478038
+      \endverb
     \endentry
-    \entry{pearson-corr}{article}{}{}
-      \name{author}{1}{}{%
-        {{hash=b69135425e9c9d6adc927b94c33421d4}{%
-           family={Pearson},
-           familyi={P\bibinitperiod},
-           given={Karl},
-           giveni={K\bibinitperiod}}}%
+    \entry{probability-calibration}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=b35fbebaaa62ff79aee38093ae22a581}{%
+           family={Niculescu-Mizil},
+           familyi={N\bibinithyphendelim M\bibinitperiod},
+           given={Alexandru},
+           giveni={A\bibinitperiod}}}%
+        {{hash=599c5251d489b92dc7856277d56cb1a9}{%
+           family={Caruana},
+           familyi={C\bibinitperiod},
+           given={Rich},
+           giveni={R\bibinitperiod}}}%
       }
-      \strng{namehash}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{fullhash}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{fullhashraw}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{bibnamehash}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{authorbibnamehash}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{authornamehash}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{authorfullhash}{b69135425e9c9d6adc927b94c33421d4}
-      \strng{authorfullhashraw}{b69135425e9c9d6adc927b94c33421d4}
-      \field{sortinit}{P}
-      \field{sortinithash}{ff3bcf24f47321b42cb156c2cc8a8422}
+      \strng{namehash}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{fullhash}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{fullhashraw}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{bibnamehash}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{authorbibnamehash}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{authornamehash}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{authorfullhash}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \strng{authorfullhashraw}{daa42a219e7d77fc10d94cb9ba3608f1}
+      \field{sortinit}{N}
+      \field{sortinithash}{22369a73d5f88983a108b63f07f37084}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{journaltitle}{Proceedings of the Royal Society of London}
-      \field{title}{Notes on regression and inheritance in the case of two parents}
-      \field{volume}{58}
-      \field{year}{1895}
-      \field{pages}{240\bibrangedash 242}
-      \range{pages}{3}
+      \field{booktitle}{Proceedings of the 22nd International Conference on Machine Learning}
+      \field{title}{Predicting Good Probabilities with Supervised Learning}
+      \field{year}{2005}
+      \field{pages}{625\bibrangedash 632}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/1102351.1102430
+      \endverb
     \endentry
     \entry{catboost-paper}{online}{}{}
       \name{author}{5}{}{%
@@ -853,35 +863,35 @@
       \verb https://vtb.ru/articles/chto-takoe-startap/
       \endverb
     \endentry
-    \entry{ipo}{online}{}{}
+    \entry{hse-ai-guidelines}{online}{}{}
       \name{author}{1}{}{%
-        {{hash=e8aaeb3489adbea1b639aa6778a23892}{%
-           family={{РБК}},
-           familyi={Р\bibinitperiod}}}%
+        {{hash=b5ee84f1ae52f22acbc3707a798888a0}{%
+           family={{Национальный исследовательский университет «Высшая школа экономики»}},
+           familyi={Н\bibinitperiod}}}%
       }
-      \strng{namehash}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{fullhash}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{fullhashraw}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{bibnamehash}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{authorbibnamehash}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{authornamehash}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{authorfullhash}{e8aaeb3489adbea1b639aa6778a23892}
-      \strng{authorfullhashraw}{e8aaeb3489adbea1b639aa6778a23892}
-      \field{sortinit}{Р}
-      \field{sortinithash}{72653a62bb3cb54ced08865870aff9d6}
+      \strng{namehash}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{fullhash}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{fullhashraw}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{bibnamehash}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{authorbibnamehash}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{authornamehash}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{authorfullhash}{b5ee84f1ae52f22acbc3707a798888a0}
+      \strng{authorfullhashraw}{b5ee84f1ae52f22acbc3707a798888a0}
+      \field{sortinit}{Н}
+      \field{sortinithash}{38afed4b2dd7a2a56c8bd22996f23af0}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{title}{Что такое IPO: как компания выходит на биржу}
-      \field{urlday}{25}
-      \field{urlmonth}{3}
-      \field{urlyear}{2025}
-      \field{year}{2022}
+      \field{title}{Правила использования искусственного интеллекта студентами}
+      \field{urlday}{17}
+      \field{urlmonth}{9}
+      \field{urlyear}{2026}
+      \field{year}{2026}
       \field{urldateera}{ce}
       \verb{urlraw}
-      \verb https://www.rbc.ru/quote/news/training/5e25ceaf9a79471671787078
+      \verb https://www.hse.ru/studyspravka/ai_guidelines_pps
       \endverb
       \verb{url}
-      \verb https://www.rbc.ru/quote/news/training/5e25ceaf9a79471671787078
+      \verb https://www.hse.ru/studyspravka/ai_guidelines_pps
       \endverb
     \endentry
   \enddatalist

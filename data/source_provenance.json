@@ -1,0 +1,13 @@
+{
+  "source_url": "https://www.kaggle.com/datasets/nitishraj/ycombinatorcompanies",
+  "file": "yc_companies.csv",
+  "sha256": "c9336c008895c6f2bd6e53a47ce71ac509fe8fbb0bd72adde276dce05ed89ccc",
+  "download_period": "mid-August 2026",
+  "download_period_evidence": "Statement by the research author on 2026-09-17",
+  "release_label": "2026-08-01",
+  "release_label_basis": "Author reports that Kaggle source updates monthly on the first day; file downloaded in mid-August",
+  "kaggle_version_number": null,
+  "exact_download_date": null,
+  "row_collection_timestamps": null,
+  "limitation": "Release label is not proof of simultaneous collection or update of all company records."
+}

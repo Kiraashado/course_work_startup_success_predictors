@@ -1,5 +1,6 @@
 import sys
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 
 import numpy as np
@@ -8,8 +9,8 @@ from catboost import Pool
 from sklearn.metrics import log_loss
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
-from modeling import (FEATURE_SETS, make_model, make_splits, point_loss,
-                      prepare_features, validate_predictions)
+from modeling import (FEATURE_SETS, aggregate_scores, make_model, make_splits, paired_comparisons, point_loss,
+                      prepare_features, scores, tune_and_fit, validate_predictions)
 
 
 class ModelingTests(unittest.TestCase):
@@ -59,8 +60,9 @@ class ModelingTests(unittest.TestCase):
 
     def test_native_shap_additivity_for_heldout_rows(self):
         x = prepare_features(self.frame)
-        model = make_model("cb_team", {"iterations": 5, "depth": 2}, 42).fit(x.iloc[:18], self.y[:18])
-        pool = Pool(x.iloc[18:], cat_features=["batch_season"])
+        cols = FEATURE_SETS["cb_team"]
+        model = make_model("cb_team", {"iterations": 5, "depth": 2}, 42).fit(x.iloc[:18][cols], self.y[:18])
+        pool = Pool(x.iloc[18:][cols], cat_features=["batch_season"])
         shap = model.get_feature_importance(pool, type="ShapValues", thread_count=2)
         np.testing.assert_allclose(shap.sum(axis=1), model.predict(pool, prediction_type="RawFormulaVal"), atol=1e-8)
 
@@ -81,9 +83,66 @@ class ModelingTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             validate_predictions(pd.DataFrame([row]), [1, 2])
 
-    def test_ablation_changes_only_requested_feature(self):
-        self.assertEqual(set(FEATURE_SETS["cb_team"]) - set(FEATURE_SETS["cb_no_size"]), {"log_team_size"})
-        self.assertEqual(set(FEATURE_SETS["cb_team"]) - set(FEATURE_SETS["cb_no_founders"]), {"num_founders"})
+    def test_feature_blocks_extend_team_model_as_declared(self):
+        team = set(FEATURE_SETS["lr_team"])
+        self.assertEqual(set(FEATURE_SETS["lr_geo"]) - team, {"country"})
+        self.assertEqual(set(FEATURE_SETS["lr_tags"]) - team, {"tag_text"})
+        self.assertEqual(set(FEATURE_SETS["lr_text"]) - team, {"short_description"})
+        self.assertEqual(set(FEATURE_SETS["lr_all"]) - team,
+                         {"country", "tag_text", "short_description"})
+
+    def test_balanced_model_reuses_the_full_feature_set(self):
+        self.assertEqual(FEATURE_SETS["lr_all_balanced"], FEATURE_SETS["lr_all"])
+        model = make_model("lr_all_balanced", {"C": 1}, 42)
+        self.assertEqual(model.named_steps["model"].class_weight, "balanced")
+
+    def test_top_selection_uses_counts_not_average_fold_ratios(self):
+        # Unequal sizes and event rates make the two aggregations differ.
+        first = scores([1, 0, 0, 0], [.9, .3, .2, .1])
+        second = scores([1, 1, 1, 0, 0, 0], [.9, .8, .7, .6, .5, .4])
+        combined = aggregate_scores(pd.DataFrame([first, second]))
+        self.assertEqual(combined["precision_at_10"], 1)
+        self.assertEqual(combined["recall_at_10"], .5)
+        self.assertEqual(combined["lift_at_10"], 2.5)
+
+    def test_ties_use_expected_selection_counts(self):
+        result = scores([1, 0, 0, 0], [.2] * 4)
+        self.assertEqual(result["selected_positive"], .25)
+        self.assertEqual(result["lift_at_10"], 1)
+
+    def test_ap_tuning_never_ranks_across_fold_probability_scales(self):
+        class FixedModel:
+            def fit(self, x, y):
+                return self
+
+            def predict_proba(self, x):
+                return np.column_stack([1-x.p, x.p])
+
+        x = pd.DataFrame({"p": [.4, .3, .9, .8]})
+        inner = [(np.array([2, 3]), np.array([0, 1])), (np.array([0, 1]), np.array([2, 3]))]
+        with patch("modeling.make_model", return_value=FixedModel()):
+            _, best, _ = tune_and_fit("lr_all_balanced", x, np.array([1, 0, 1, 0]), inner, 42)
+        self.assertEqual(best["inner_average_precision"], 1)
+
+    def test_tag_encoder_preserves_punctuation_and_multiword_labels(self):
+        frame = self.frame.copy()
+        frame["tags"] = [["Health & Wellness", "B2B/SaaS"] for _ in range(len(frame))]
+        model = make_model("lr_tags", {"C": 1}, 42).fit(prepare_features(frame), self.y)
+        vocabulary = model.named_steps["features"].named_transformers_["tags"].get_feature_names_out()
+        self.assertEqual(set(vocabulary), {"Health & Wellness", "B2B/SaaS"})
+
+    def test_cluster_resampling_preserves_shared_batch_error(self):
+        rows = []
+        for i in range(100):
+            y = i % 2
+            good = i < 50
+            probability = (.8 if y else .2) if good else (.2 if y else .8)
+            for model, p in [("constant", .5), ("lr_all", probability)]:
+                rows.append({"scheme": "grouped", "repeat": 0, "id": i,
+                             "y": y, "batch": "A" if good else "B", "model": model, "probability": p})
+        result = paired_comparisons(pd.DataFrame(rows), n_bootstrap=500).iloc[0]
+        self.assertGreater(result.cluster_high-result.cluster_low,
+                           3*(result.conditional_high-result.conditional_low))
 
 
 if __name__ == "__main__":

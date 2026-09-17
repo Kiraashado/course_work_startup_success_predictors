@@ -1,8 +1,10 @@
 \documentclass[a4paper,12pt]{extarticle}
 \usepackage{geometry}
-\usepackage[T1]{fontenc}
+\usepackage[T2A,T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[english,russian]{babel}
+\usepackage{csquotes}
+\usepackage{xurl}
 \usepackage{booktabs, multirow, tabularx, ragged2e, longtable}
 \usepackage{amsmath}
 \usepackage{lineno}
@@ -46,11 +48,17 @@ maxbibnames=99
 \geometry{top=2.0cm}% верхнее поле
 \geometry{bottom=2.0cm}% нижнее поле
 \setlength{\parindent}{1.25cm}
+\setlength{\emergencystretch}{2em}
 \renewcommand{\baselinestretch}{1.5} % междустрочный интервал
 
 
 \newcommand{\bibref}[3]{\hyperlink{#1}{#2 (#3)}} % biblabel, authors, year
 \addto\captionsrussian{\def\refname{Список литературы (или источников)}} 
+\addto\captionsrussian{%
+    \renewcommand{\figurename}{Рисунок}%
+    \renewcommand{\tablename}{Таблица}%
+}
+\renewcommand{\lstlistingname}{Листинг}
 
 \renewcommand{\theenumi}{\arabic{enumi}}% Меняем везде перечисления на цифра.цифра
 \renewcommand{\labelenumi}{\arabic{enumi}}% Меняем везде перечисления на цифра.цифра
@@ -58,6 +66,8 @@ maxbibnames=99
 \renewcommand{\labelenumii}{\arabic{enumi}.\arabic{enumii}.}% Меняем везде перечисления на цифра.цифра
 \renewcommand{\theenumiii}{.\arabic{enumiii}}% Меняем везде перечисления на цифра.цифра
 \renewcommand{\labelenumiii}{\arabic{enumi}.\arabic{enumii}.\arabic{enumiii}.}% Меняем везде перечисления на цифра.цифра
+
+\input{sections/generated/model_numbers}
 
 \begin{document}
 \linenumbers
@@ -89,13 +99,13 @@ maxbibnames=99
 
 \input{sections/predictors}
 
-\input{sections/correlation}
-
-\input{sections/dynamics}
-
 \input{sections/conclusions}
+
+\input{sections/ai_usage}
 
 \newpage
 \printbibliography[heading=bibintoc]
+
+\input{sections/historical_plan}
 
 \end{document}
