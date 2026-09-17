@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber coursework"] 1789663271.1947 "coursework.bcf" "coursework.bbl" "coursework" 1789682776.78653 0
-  "coursework.bcf" 1789682776.46499 111378 636b4aab7016fb344d2be21556e0f7d2 "pdflatex"
+["biber coursework"] 1789663271.1947 "coursework.bcf" "coursework.bbl" "coursework" 1789684231.0388 0
+  "coursework.bcf" 1789684230.5958 111378 636b4aab7016fb344d2be21556e0f7d2 "pdflatex"
   "refs.bib" 1789653240.62635 9851 4113e43fd4537c7f56e28ae94a30824a ""
   (generated)
   "coursework.bbl"
   "coursework.blg"
   (rewritten before read)
-["pdflatex"] 1789682773.3678 "coursework.tex" "coursework.pdf" "coursework" 1789682776.78706 0
+["pdflatex"] 1789684226.86185 "coursework.tex" "coursework.pdf" "coursework" 1789684231.0394 0
   "/etc/texmf/web2c/texmf.cnf" 1775035603.01222 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/kiraashado/.texlive2025/texmf-var/fonts/tfm/lh/lh-t2a/labx1095.tfm" 1786783665.81605 3336 216c27338cb0f11f0d2908d69ce3de23 ""
   "/home/kiraashado/.texlive2025/texmf-var/fonts/tfm/lh/lh-t2a/labx1200.tfm" 1786783643.95612 3308 eee81981029f67083258db36df06e523 ""
@@ -266,11 +266,11 @@
   "/usr/share/texmf/web2c/texmf.cnf" 1741904018 41538 c016915c1d51223b6dbbfe27341748a8 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1781594653 5467255 9a64d1b40e0b893fc5588ecce9d8accf ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1781594499 3349082 8bc098efb8fb59da66495fcf5fbb7c9d ""
-  "coursework.aux" 1789682776.45599 43777 ae6fd8c7399de5bbc0fd3b990238b958 "pdflatex"
-  "coursework.bbl" 1789663272.89646 36858 f025b552245a61378747a3c867cf2565 "biber coursework"
-  "coursework.run.xml" 1789682776.46803 2372 9dd39629d46ecfc9c050cad56bdaac1e "pdflatex"
+  "coursework.aux" 1789684230.5858 43777 ae6fd8c7399de5bbc0fd3b990238b958 "pdflatex"
+  "coursework.bbl" 1789684034.97177 36858 f025b552245a61378747a3c867cf2565 "biber coursework"
+  "coursework.run.xml" 1789684230.59844 2372 9dd39629d46ecfc9c050cad56bdaac1e "pdflatex"
   "coursework.tex" 1789681709.63986 3590 900302a5a65d5c481b5ba4e680c7faf3 ""
-  "coursework.toc" 1789682776.46803 7530 fb5a454500180d3b88a1ffeb8e6edb3b "pdflatex"
+  "coursework.toc" 1789684230.59844 7530 fb5a454500180d3b88a1ffeb8e6edb3b "pdflatex"
   "graphics/eda/02_missing_values.pdf" 1789667070.86946 31237 53f68fa711769744f182160c05e33a0e ""
   "graphics/eda/03_followup_status.pdf" 1789667073.16589 31813 36e60b0b59a537fe6b55ac6aaa14fcfa ""
   "graphics/eda/04_cohort_composition.pdf" 1789667075.91347 33559 728c0479623c289498878f32fe631810 ""
@@ -287,7 +287,7 @@
   "graphics/modeling/06_shap_importance.pdf" 1789681718.54521 34255 d8fd735a9751fc16358e0c88a8ff159f ""
   "graphics/modeling/07_tag_coefficients.pdf" 1789681719.44821 37139 359c948493c696c871513808f8a1a303 ""
   "graphics/modeling/08_batch_gains.pdf" 1789681720.4521 40510 33b8e8288baa7e5bfc160b6629e8372c ""
-  "sections/ai_usage.tex" 1789682768.72311 7389 537a1932ae1c4ff4369923fc76c76083 ""
+  "sections/ai_usage.tex" 1789683942.62643 5367 21305a80e46f07055de40722556967f4 ""
   "sections/annotation.tex" 1789667331.02162 3214 4bdac5859fb8fcbf861b570bb298ab75 ""
   "sections/conclusions.tex" 1789667331.01962 10919 c03d19ac3a91a4b96e9fffcd6e8ff3ff ""
   "sections/data.tex" 1789667512.29731 27142 b218f5e9097517457eb66771329bd9f7 ""
@@ -303,7 +303,7 @@
   "sections/generated/tag_coefficients.tex" 1789681718.61287 864 0e243ffc441f36c38e6aecde0c60e7d3 ""
   "sections/generated/tag_interpretation.tex" 1789681720.47018 850 a8fa5e0953d9036ba20bae94b98a4366 ""
   "sections/historical_plan.tex" 1789667061.94381 3175 54d9db575ccbf736d3ee59d7423825be ""
-  "sections/introduction.tex" 1789682768.90311 22972 1a12b5c33834280551fff9e97aa1bea6 ""
+  "sections/introduction.tex" 1789684028.06823 22877 11a42f564a99e84236a3f94174fc83b7 ""
   "sections/literature.tex" 1789667061.91981 13195 d62eaa8e26bd7fff5289cc827b21a007 ""
   "sections/methodology.tex" 1789667000.46691 17715 efaadfe0125a5cbdc900938962e20013 ""
   "sections/predictors.tex" 1789682769.05711 19897 e89f9800f3ae3afa7bef25f4f083af89 ""
